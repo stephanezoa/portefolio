@@ -1,0 +1,249 @@
+{% extends "base.html" %}
+
+{% block title %}My Projects - Portfolio{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="text-center mb-16" data-aos="fade-up">
+    <p class="text-cyan-400 text-sm font-semibold mb-2">🚀 MY PORTFOLIO</p>
+    <h1 class="text-5xl md:text-6xl font-extrabold mb-4">
+        Featured <span class="gradient-text">Projects</span>
+    </h1>
+    <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+        Explore my latest work and see how I transform ideas into reality
+    </p>
+</div>
+
+<!-- Filter Tabs -->
+<div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up" data-aos-delay="100">
+    <button class="filter-btn active px-6 py-2 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/50 hover:bg-cyan-500/30 transition" data-filter="all">
+        All Projects
+    </button>
+    {% for category in categories %}
+    <button class="filter-btn px-6 py-2 rounded-full bg-gray-800/50 text-gray-400 border border-gray-700 hover:bg-gray-800 hover:text-cyan-400 transition" data-filter="{{ category }}">
+        {{ category }}
+    </button>
+    {% endfor %}
+</div>
+
+<!-- Projects Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16" id="projects-grid">
+    {% for project in projects %}
+    <div class="project-card bg-card-bg rounded-xl overflow-hidden card-hover border border-gray-800" 
+         data-aos="fade-up" 
+         data-aos-delay="{{ loop.index * 50 }}"
+         data-category="{{ project.category }}">
+        <!-- Project Image -->
+        <div class="relative overflow-hidden group h-64">
+            <img src="{{ url_for('static', filename='images/' + project.image) }}" 
+                 alt="{{ project.title }}"
+                 onerror="this.src='{{ project.fallback }}'"
+                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <div class="flex gap-3">
+                        {% if project.github %}
+                        <a href="{{ project.github }}" target="_blank" 
+                           class="flex-1 bg-gray-800/80 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-center transition backdrop-blur-sm">
+                            <i class="fab fa-github mr-2"></i>Code
+                        </a>
+                        {% endif %}
+                        {% if project.demo %}
+                        <a href="{{ project.demo }}" target="_blank" 
+                           class="flex-1 bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-lg text-center transition">
+                            <i class="fas fa-external-link-alt mr-2"></i>Demo
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category Badge -->
+            <div class="absolute top-4 right-4">
+                <span class="bg-{{ project.color }}-500/20 text-{{ project.color }}-400 px-3 py-1 rounded-full text-xs font-semibold border border-{{ project.color }}-500/50 backdrop-blur-sm">
+                    {{ project.category }}
+                </span>
+            </div>
+        </div>
+
+        <!-- Project Info -->
+        <div class="p-6">
+            <h3 class="text-2xl font-bold mb-2 hover:text-cyan-400 transition">
+                {{ project.title }}
+            </h3>
+            <p class="text-gray-400 text-sm mb-3">{{ project.subtitle }}</p>
+            <p class="text-gray-300 mb-4 line-clamp-2">{{ project.description }}</p>
+            
+            <!-- Technologies -->
+            <div class="flex flex-wrap gap-2 mb-4">
+                {% for tech in project.technologies[:3] %}
+                <span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-xs">
+                    {{ tech }}
+                </span>
+                {% endfor %}
+                {% if project.technologies|length > 3 %}
+                <span class="bg-gray-800 text-cyan-400 px-3 py-1 rounded-full text-xs">
+                    +{{ project.technologies|length - 3 }}
+                </span>
+                {% endif %}
+            </div>
+
+            <!-- View Details Button -->
+            <button class="w-full bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg transition view-details-btn" data-project-id="{{ project.id }}">
+                View Details <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Project Stats -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16" data-aos="fade-up">
+    <div class="bg-card-bg p-6 rounded-xl text-center border border-gray-800">
+        <div class="text-4xl font-bold text-cyan-400 mb-2">{{ projects|length }}+</div>
+        <div class="text-sm text-gray-400">Total Projects</div>
+    </div>
+    <div class="bg-card-bg p-6 rounded-xl text-center border border-gray-800">
+        <div class="text-4xl font-bold text-purple-400 mb-2">{{ categories|length }}</div>
+        <div class="text-sm text-gray-400">Categories</div>
+    </div>
+    <div class="bg-card-bg p-6 rounded-xl text-center border border-gray-800">
+        <div class="text-4xl font-bold text-green-400 mb-2">100%</div>
+        <div class="text-sm text-gray-400">Success Rate</div>
+    </div>
+    <div class="bg-card-bg p-6 rounded-xl text-center border border-gray-800">
+        <div class="text-4xl font-bold text-orange-400 mb-2">24/7</div>
+        <div class="text-sm text-gray-400">Support</div>
+    </div>
+</div>
+
+<!-- CTA Section -->
+<div class="bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-2xl p-12 text-center border border-cyan-500/20" data-aos="zoom-in">
+    <h2 class="text-4xl font-bold mb-4">Have a Project in Mind?</h2>
+    <p class="text-xl text-gray-300 mb-8">Let's collaborate and create something extraordinary</p>
+    <a href="{{ url_for('contact.contact') }}" 
+       class="inline-block bg-cyan-500 hover:bg-cyan-600 px-10 py-4 rounded-lg text-lg font-medium transition-all duration-300 glow">
+        Start a Project <i class="fas fa-rocket ml-2"></i>
+    </a>
+</div>
+
+<!-- Project Detail Modal -->
+<div id="project-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-card-bg rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-gray-800">
+        <div class="p-8">
+            <div class="flex justify-between items-start mb-6">
+                <h2 id="modal-title" class="text-3xl font-bold gradient-text"></h2>
+                <button id="close-modal" class="text-gray-400 hover:text-white text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <img id="modal-image" src="" alt="" class="w-full h-64 object-cover rounded-xl mb-6">
+            
+            <p id="modal-description" class="text-gray-300 mb-6"></p>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-bold mb-3">Technologies Used</h3>
+                <div id="modal-technologies" class="flex flex-wrap gap-2"></div>
+            </div>
+            
+            <div class="flex gap-4">
+                <a id="modal-github" href="#" target="_blank" class="flex-1 bg-gray-800 hover:bg-gray-700 text-white px-6 py-3 rounded-lg text-center transition">
+                    <i class="fab fa-github mr-2"></i>View Code
+                </a>
+                <a id="modal-demo" href="#" target="_blank" class="flex-1 bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-3 rounded-lg text-center transition">
+                    <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Filter functionality
+const filterBtns = document.querySelectorAll('.filter-btn');
+const projectCards = document.querySelectorAll('.project-card');
+
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterBtns.forEach(b => {
+            b.classList.remove('active', 'bg-cyan-500/20', 'text-cyan-400', 'border-cyan-500/50');
+            b.classList.add('bg-gray-800/50', 'text-gray-400', 'border-gray-700');
+        });
+        
+        // Add active class to clicked button
+        btn.classList.add('active', 'bg-cyan-500/20', 'text-cyan-400', 'border-cyan-500/50');
+        btn.classList.remove('bg-gray-800/50', 'text-gray-400', 'border-gray-700');
+        
+        const filter = btn.getAttribute('data-filter');
+        
+        projectCards.forEach(card => {
+            if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                card.style.display = 'block';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'scale(1)';
+                }, 10);
+            } else {
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                    card.style.display = 'none';
+                }, 300);
+            }
+        });
+    });
+});
+
+// Project data (should match backend data)
+const projectsData = {{ projects | tojson | safe }};
+
+// Modal functionality
+const modal = document.getElementById('project-modal');
+const closeModal = document.getElementById('close-modal');
+const viewDetailsBtns = document.querySelectorAll('.view-details-btn');
+
+viewDetailsBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const projectId = parseInt(btn.getAttribute('data-project-id'));
+        const project = projectsData.find(p => p.id === projectId);
+        
+        if (project) {
+            document.getElementById('modal-title').textContent = project.title;
+            document.getElementById('modal-image').src = project.fallback;
+            document.getElementById('modal-description').textContent = project.long_description;
+            
+            // Technologies
+            const techContainer = document.getElementById('modal-technologies');
+            techContainer.innerHTML = project.technologies.map(tech => 
+                `<span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-sm">${tech}</span>`
+            ).join('');
+            
+            // Links
+            document.getElementById('modal-github').href = project.github || '#';
+            document.getElementById('modal-demo').href = project.demo || '#';
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+    });
+});
+
+closeModal.addEventListener('click', () => {
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+});
+
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+});
+</script>
+{% endblock %}

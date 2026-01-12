@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Client Testimonials{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="text-center mb-16" data-aos="fade-up">
+    <p class="text-cyan-400 text-sm font-semibold mb-2">💬 Customer Feedback Highlights</p>
+    <h1 class="text-5xl font-extrabold mb-4">
+        What People <span class="gradient-text">Say About Me</span>
+    </h1>
+    <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+        Hear from clients and colleagues who've experienced working with me
+    </p>
+</div>
+
+<!-- Testimonials Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-32">
+    {% for testimonial in testimonials %}
+    <div class="bg-card-bg rounded-xl p-8 border border-gray-800 card-hover" 
+         data-aos="fade-up" 
+         data-aos-delay="{{ loop.index0 * 100 }}">
+        <!-- Stars Rating -->
+        <div class="flex gap-1 mb-4">
+            {% for i in range(testimonial.rating) %}
+            <i class="fas fa-star text-yellow-400"></i>
+            {% endfor %}
+        </div>
+        
+        <!-- Testimonial Text -->
+        <p class="text-gray-300 mb-6 italic">"{{ testimonial.text }}"</p>
+        
+        <!-- Author Info -->
+        <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-purple-500 rounded-full flex items-center justify-center font-bold text-white">
+                {{ testimonial.avatar }}
+            </div>
+            <div>
+                <h4 class="font-bold">{{ testimonial.name }}</h4>
+                <p class="text-sm text-gray-400">{{ testimonial.role }}</p>
+            </div>
+        </div>
+        
+        <!-- Company Badge -->
+        <div class="mt-4 pt-4 border-t border-gray-800">
+            <span class="text-xs text-gray-500">Company: </span>
+            <span class="text-sm font-semibold text-cyan-400">{{ testimonial.company }}</span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- CTA Section -->
+<div class="bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-2xl p-12 text-center border border-cyan-500/20" 
+     data-aos="zoom-in">
+    <h2 class="text-4xl font-bold mb-4">Want to Be My Next Success Story?</h2>
+    <p class="text-xl text-gray-300 mb-8">Let's create something amazing together</p>
+    <a href="{{ url_for('contact.contact') }}" 
+       class="inline-block bg-cyan-500 hover:bg-cyan-600 px-10 py-4 rounded-lg text-lg font-medium transition-all duration-300 glow">
+        Start a Project <i class="fas fa-rocket ml-2"></i>
+    </a>
+</div>
+{% endblock %}

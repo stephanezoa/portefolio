@@ -1,0 +1,1299 @@
+{% extends "base.html" %}
+
+{% block title %}Transformer vos Idées en Projets Concrets{% endblock %}
+
+{% block content %}
+<!-- Hero Section avec Animation Morphing -->
+<div class="flex flex-col lg:flex-row items-center gap-12 mb-32" data-aos="fade-up">
+    <div class="lg:w-1/2 space-y-6">
+        <h1 class="text-5xl md:text-6xl font-extrabold leading-tight">
+            <span class="gradient-text">Transformer vos Idées</span> <br>
+            en Projets Concrets <br>
+            qui Génèrent des Résultats
+        </h1>
+        <p class="text-lg text-gray-300">
+            Salut, je suis <span class="text-cyan-400 font-semibold">Stephane Zoa</span>, développeur Full-Stack basé au Cameroun 🇨🇲. 
+            Je crée des solutions digitales innovantes avec Flutter, Python, React, Go et plus encore.
+        </p>
+        <div class="flex flex-wrap gap-4">
+            <a href="#projects" class="inline-block bg-cyan-500 hover:bg-cyan-600 px-8 py-3 rounded-lg font-medium transition-all duration-300 glow btn-pulse">
+                Voir mes Projets <i class="fas fa-arrow-down ml-2"></i>
+            </a>
+            <a href="{{ url_for('static', filename='documents/CV_Stephane_Zoa.pdf') }}" 
+               download="CV_Stephane_Zoa.pdf"
+               class="inline-block bg-purple-600 hover:bg-purple-700 px-8 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2">
+                <i class="fas fa-download"></i>
+                Télécharger CV
+            </a>
+        </div>
+    </div>
+    
+    <!-- Hero Carousel avec Code Typing + Images -->
+    <div class="lg:w-1/2" data-aos="fade-left" data-aos-delay="200">
+        <div class="relative hero-carousel-container">
+            <!-- Glow Background Subtil -->
+            <div class="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-2xl"></div>
+            
+            <!-- Carousel Principal -->
+            <div class="hero-carousel relative">
+                <!-- Slide 1: Code Python - API Backend -->
+                <div class="hero-slide active">
+                    <div class="code-editor">
+                        <div class="editor-header">
+                            <div class="editor-dots">
+                                <span class="dot-red"></span>
+                                <span class="dot-yellow"></span>
+                                <span class="dot-green"></span>
+                            </div>
+                            <span class="editor-title">api/users.py</span>
+                        </div>
+                        <div class="editor-content">
+                            <div class="line-numbers"></div>
+                            <pre class="code-lines"><code id="typing-code-1"></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2: Image CI/CD Pipeline -->
+                <div class="hero-slide">
+                    <img src="{{ url_for('static', filename='images/cicd-pipeline.jpg') }}" 
+                         alt="Pipeline CI/CD"
+                         onerror="this.src='https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800&h=600&fit=crop&q=80'"
+                         class="carousel-image">
+                    <div class="image-overlay">
+                        <div class="overlay-tag">
+                            <i class="fas fa-sync-alt"></i>
+                            <span>CI/CD Pipeline</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3: Code Flutter - Widget Moderne -->
+                <div class="hero-slide">
+                    <div class="code-editor flutter-editor">
+                        <div class="editor-header">
+                            <div class="editor-dots">
+                                <span class="dot-red"></span>
+                                <span class="dot-yellow"></span>
+                                <span class="dot-green"></span>
+                            </div>
+                            <span class="editor-title">widgets/dashboard_card.dart</span>
+                        </div>
+                        <div class="editor-content">
+                            <div class="line-numbers"></div>
+                            <pre class="code-lines"><code id="typing-code-2"></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 4: Image DevOps -->
+                <div class="hero-slide">
+                    <img src="{{ url_for('static', filename='images/devops-monitoring.jpg') }}" 
+                         alt="DevOps et Monitoring"
+                         onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&q=80'"
+                         class="carousel-image">
+                    <div class="image-overlay">
+                        <div class="overlay-tag">
+                            <i class="fas fa-chart-line"></i>
+                            <span>DevOps & Monitoring</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 5: Code Go - API REST -->
+                <div class="hero-slide">
+                    <div class="code-editor go-editor">
+                        <div class="editor-header">
+                            <div class="editor-dots">
+                                <span class="dot-red"></span>
+                                <span class="dot-yellow"></span>
+                                <span class="dot-green"></span>
+                            </div>
+                            <span class="editor-title">handlers/product.go</span>
+                        </div>
+                        <div class="editor-content">
+                            <div class="line-numbers"></div>
+                            <pre class="code-lines"><code id="typing-code-3"></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 6: Image Architecture Cloud -->
+                <div class="hero-slide">
+                    <img src="{{ url_for('static', filename='images/cloud-architecture.jpg') }}" 
+                         alt="Architecture Cloud"
+                         onerror="this.src='https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&h=600&fit=crop&q=80'"
+                         class="carousel-image">
+                    <div class="image-overlay">
+                        <div class="overlay-tag">
+                            <i class="fas fa-cloud"></i>
+                            <span>Cloud Architecture</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 7: Code React - Dashboard -->
+                <div class="hero-slide">
+                    <div class="code-editor react-editor">
+                        <div class="editor-header">
+                            <div class="editor-dots">
+                                <span class="dot-red"></span>
+                                <span class="dot-yellow"></span>
+                                <span class="dot-green"></span>
+                            </div>
+                            <span class="editor-title">components/Dashboard.jsx</span>
+                        </div>
+                        <div class="editor-content">
+                            <div class="line-numbers"></div>
+                            <pre class="code-lines"><code id="typing-code-4"></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 8: Image Docker Kubernetes -->
+                <div class="hero-slide">
+                    <img src="{{ url_for('static', filename='images/docker-kubernetes.jpg') }}" 
+                         alt="Docker & Kubernetes"
+                         onerror="this.src='https://images.unsplash.com/photo-1605745341112-85968b19335b?w=800&h=600&fit=crop&q=80'"
+                         class="carousel-image">
+                    <div class="image-overlay">
+                        <div class="overlay-tag">
+                            <i class="fab fa-docker"></i>
+                            <span>Docker & Kubernetes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 9: Code Python - ML/AI -->
+                <div class="hero-slide">
+                    <div class="code-editor ai-editor">
+                        <div class="editor-header">
+                            <div class="editor-dots">
+                                <span class="dot-red"></span>
+                                <span class="dot-yellow"></span>
+                                <span class="dot-green"></span>
+                            </div>
+                            <span class="editor-title">ml/predictor.py</span>
+                        </div>
+                        <div class="editor-content">
+                            <div class="line-numbers"></div>
+                            <pre class="code-lines"><code id="typing-code-5"></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 10: Image Database -->
+                <div class="hero-slide">
+                    <img src="{{ url_for('static', filename='images/database-server.jpg') }}" 
+                         alt="Base de données et serveurs"
+                         onerror="this.src='https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop&q=80'"
+                         class="carousel-image">
+                    <div class="image-overlay">
+                        <div class="overlay-tag">
+                            <i class="fas fa-database"></i>
+                            <span>Bases de Données</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Dots -->
+            <div class="carousel-dots">
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+                <span class="dot" data-slide="2"></span>
+                <span class="dot" data-slide="3"></span>
+                <span class="dot" data-slide="4"></span>
+                <span class="dot" data-slide="5"></span>
+                <span class="dot" data-slide="6"></span>
+                <span class="dot" data-slide="7"></span>
+                <span class="dot" data-slide="8"></span>
+                <span class="dot" data-slide="9"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Stats Section -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-32" data-aos="fade-up">
+    {% set stats = [
+        {'value': '5+', 'label': "Années d'Expérience", 'icon': 'fa-clock'},
+        {'value': '50+', 'label': 'Clients Satisfaits', 'icon': 'fa-users'},
+        {'value': '75+', 'label': 'Projets Complétés', 'icon': 'fa-check-circle'},
+        {'value': '95%', 'label': 'Taux de Satisfaction', 'icon': 'fa-heart'}
+    ] %}
+    
+    {% for stat in stats %}
+    <div class="bg-card-bg p-6 rounded-xl text-center card-hover border border-gray-800" 
+         data-aos="zoom-in" 
+         data-aos-delay="{{ loop.index * 100 }}">
+        <i class="fas {{ stat.icon }} text-3xl text-cyan-400 mb-3"></i>
+        <div class="text-4xl font-bold text-cyan-400 mb-2">{{ stat.value }}</div>
+        <div class="text-sm text-gray-400">{{ stat.label }}</div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Projects Preview -->
+<div id="projects" class="mb-32">
+    <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">
+        Projets <span class="gradient-text">En Vedette</span>
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Project 1 -->
+        <div class="bg-card-bg rounded-xl overflow-hidden card-hover border border-gray-800" 
+             data-aos="fade-up" 
+             data-aos-delay="100">
+            <div class="relative overflow-hidden group">
+                <img src="{{ url_for('static', filename='images/ryde-app.png') }}" 
+                     alt="Application Ryde"
+                     onerror="this.src='https://images.unsplash.com/photo-1555421689-d68471e189f2?w=800&h=600&fit=crop'"
+                     class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                    <a href="{{ url_for('projects.projects') }}" class="bg-cyan-500 px-6 py-2 rounded-lg hover:bg-cyan-600 transition">
+                        Voir le Projet <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="p-6">
+                <h3 class="text-2xl font-bold mb-2">Application de Covoiturage Simplifiée</h3>
+                <p class="text-gray-400 mb-4">Une app puissante et intuitive appelée Ryde</p>
+                <p class="text-sm text-gray-500">
+                    Application mobile développée avec Flutter pour une expérience utilisateur fluide et moderne.
+                </p>
+                <div class="flex flex-wrap gap-2 mt-4">
+                    <span class="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-xs">Flutter</span>
+                    <span class="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-xs">Firebase</span>
+                    <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs">Google Maps</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="bg-card-bg rounded-xl overflow-hidden card-hover border border-gray-800" 
+             data-aos="fade-up" 
+             data-aos-delay="200">
+            <div class="relative overflow-hidden group">
+                <img src="{{ url_for('static', filename='images/library-platform.png') }}" 
+                     alt="Plateforme Bibliothèque"
+                     onerror="this.src='https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop'"
+                     class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                    <a href="{{ url_for('projects.projects') }}" class="bg-cyan-500 px-6 py-2 rounded-lg hover:bg-cyan-600 transition">
+                        Voir le Projet <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="p-6">
+                <h3 class="text-2xl font-bold mb-2">Plateforme de Gestion de Bibliothèque</h3>
+                <p class="text-gray-400 mb-4">Gestion moderne et découverte de livres</p>
+                <p class="text-sm text-gray-500">
+                    Système complet avec API Python/FastAPI et interface React pour la gestion intelligente.
+                </p>
+                <div class="flex flex-wrap gap-2 mt-4">
+                    <span class="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-xs">React</span>
+                    <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-xs">Python</span>
+                    <span class="bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-xs">PostgreSQL</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="bg-card-bg rounded-xl overflow-hidden card-hover border border-gray-800" 
+             data-aos="fade-up" 
+             data-aos-delay="300">
+            <div class="relative overflow-hidden group">
+                <img src="{{ url_for('static', filename='images/yc-directory.png') }}" 
+                     alt="Annuaire Startups"
+                     onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop'"
+                     class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                    <a href="{{ url_for('projects.projects') }}" class="bg-cyan-500 px-6 py-2 rounded-lg hover:bg-cyan-600 transition">
+                        Voir le Projet <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="p-6">
+                <h3 class="text-2xl font-bold mb-2">Annuaire de Startups Innovantes</h3>
+                <p class="text-gray-400 mb-4">Connecter startups et entrepreneurs</p>
+                <p class="text-sm text-gray-500">
+                    Plateforme développée avec Go pour des performances optimales et une scalabilité maximale.
+                </p>
+                <div class="flex flex-wrap gap-2 mt-4">
+                    <span class="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-xs">Go</span>
+                    <span class="bg-pink-500/20 text-pink-400 px-3 py-1 rounded-full text-xs">GraphQL</span>
+                    <span class="bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-xs">MongoDB</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Card -->
+        <div class="bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-xl p-8 flex flex-col items-center justify-center text-center card-hover border border-cyan-500/30" 
+             data-aos="fade-up" 
+             data-aos-delay="400">
+            <i class="fas fa-plus-circle text-6xl text-cyan-400 mb-4"></i>
+            <h3 class="text-2xl font-bold mb-4">Envie d'en Voir Plus ?</h3>
+            <p class="text-gray-400 mb-6">Explorez tous mes projets et études de cas</p>
+            <a href="{{ url_for('projects.projects') }}" 
+               class="bg-cyan-500 hover:bg-cyan-600 px-8 py-3 rounded-lg font-medium transition-all duration-300 glow">
+                Voir Tous les Projets <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- TrueFocus Skills Animation -->
+<div class="text-center mb-32" data-aos="fade-up">
+    <p class="text-cyan-400 text-sm font-semibold mb-2">💡 Ce que j'Apporte</p>
+    <h2 class="text-4xl font-bold mb-12">
+        Mon <span class="gradient-text">Expertise</span> Principale
+    </h2>
+    <div id="true-focus-container" class="min-h-[200px] flex items-center justify-center">
+        <!-- TrueFocus component will be injected here -->
+    </div>
+</div>
+
+<!-- CTA Section -->
+<div class="bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-2xl p-12 text-center border border-cyan-500/20" 
+     data-aos="zoom-in">
+    <h2 class="text-4xl font-bold mb-4">Prêt à Démarrer un Projet ?</h2>
+    <p class="text-xl text-gray-300 mb-8">Construisons ensemble quelque chose d'extraordinaire</p>
+    <div class="flex flex-wrap gap-4 justify-center">
+        <a href="{{ url_for('contact.contact') }}" 
+           class="inline-block bg-cyan-500 hover:bg-cyan-600 px-10 py-4 rounded-lg text-lg font-medium transition-all duration-300 glow">
+            Me Contacter <i class="fas fa-paper-plane ml-2"></i>
+        </a>
+        <a href="https://wa.me/237686002112" 
+           target="_blank"
+           class="inline-block bg-green-600 hover:bg-green-700 px-10 py-4 rounded-lg text-lg font-medium transition-all duration-300 flex items-center gap-2">
+            <i class="fab fa-whatsapp"></i>
+            WhatsApp
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://unpkg.com/motion@10.16.0/dist/motion.min.js"></script>
+
+<style>
+/* ===== HERO CAROUSEL CONTAINER ===== */
+.hero-carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hero-carousel {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.hero-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+}
+
+.hero-slide.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+}
+
+/* ===== CODE EDITOR STYLES ===== */
+.code-editor {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    display: flex;
+    flex-direction: column;
+}
+
+.code-editor.flutter-editor {
+    background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
+}
+
+.code-editor.react-editor {
+    background: linear-gradient(135deg, #1e1e1e 0%, #2d2d30 100%);
+}
+
+.code-editor.go-editor {
+    background: linear-gradient(135deg, #0e141b 0%, #1a2332 100%);
+}
+
+.code-editor.ai-editor {
+    background: linear-gradient(135deg, #1a1625 0%, #2d1b3d 100%);
+}
+
+.editor-header {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.editor-dots {
+    display: flex;
+    gap: 7px;
+}
+
+.editor-dots span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.dot-red { background: #ff5f56; }
+.dot-yellow { background: #ffbd2e; }
+.dot-green { background: #27c93f; }
+
+.editor-title {
+    color: #8b949e;
+    font-size: 13px;
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-weight: 500;
+}
+
+.editor-content {
+    flex: 1;
+    display: flex;
+    padding: 20px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.line-numbers {
+    padding: 0 15px;
+    color: #4a5568;
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: right;
+    user-select: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.code-lines {
+    flex: 1;
+    padding: 0 20px;
+    margin: 0;
+    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #e6edf3;
+    overflow: hidden;
+}
+
+.code-lines code {
+    display: block;
+    white-space: pre;
+}
+
+/* Cursor de typing */
+.typing-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background: #06b6d4;
+    animation: blink 1s infinite;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Code Syntax Highlighting - Plus subtil et naturel */
+.kw { color: #ff7b72; }  /* keywords */
+.cl { color: #ffa657; }  /* classes */
+.fn { color: #79c0ff; }  /* functions */
+.st { color: #a5d6ff; }  /* strings */
+.cm { color: #8b949e; font-style: italic; }  /* comments */
+.dc { color: #d2a8ff; }  /* decorators */
+.nm { color: #79c0ff; }  /* numbers */
+
+/* ===== IMAGE STYLES ===== */
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 30px;
+}
+
+.overlay-tag {
+    background: rgba(6, 182, 212, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 12px 24px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 4px 20px rgba(6, 182, 212, 0.4);
+    animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== CAROUSEL DOTS ===== */
+.carousel-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.carousel-dots .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-dots .dot:hover {
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(1.2);
+}
+
+.carousel-dots .dot.active {
+    background: #06b6d4;
+    width: 30px;
+    border-radius: 5px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .hero-carousel {
+        height: 350px;
+    }
+    
+    .code-lines {
+        font-size: 11px;
+        padding: 0 15px;
+    }
+    
+    .line-numbers {
+        font-size: 11px;
+        padding: 0 10px;
+    }
+    
+    .overlay-tag {
+        font-size: 12px;
+        padding: 10px 20px;
+    }
+}
+
+/* ===== FOCUS BORDER STYLES ===== */
+.focus-border {
+    position: absolute;
+    border-radius: 8px;
+    z-index: 10;
+}
+
+.focus-corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 3px solid;
+    transition: all 0.3s ease;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .image-carousel {
+        height: 350px;
+    }
+    
+    .code-content {
+        font-size: 11px;
+        padding: 15px;
+    }
+    
+    .code-header {
+        padding: 10px 15px;
+    }
+}
+</style>
+
+<script>
+// ===== CODE SNIPPETS FOR TYPING ANIMATION =====
+const codeSnippets = {
+    python_api: `from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+from typing import List, Optional
+import jwt
+
+app = FastAPI()
+
+class User(BaseModel):
+    id: int
+    username: str
+    email: str
+    role: str
+
+@app.get("/api/users", response_model=List[User])
+async def get_users(skip: int = 0, limit: int = 100):
+    """Récupérer la liste des utilisateurs"""
+    users = await db.users.find().skip(skip).limit(limit).to_list()
+    return users
+
+@app.post("/api/users", status_code=201)
+async def create_user(user: User):
+    """Créer un nouvel utilisateur"""
+    result = await db.users.insert_one(user.dict())
+    return {"id": str(result.inserted_id), "message": "User created"}`,
+    
+    flutter_widget: `import 'package:flutter/material.dart';
+
+class DashboardCard extends StatelessWidget {
+  final String title;
+  final int value;
+  final IconData icon;
+  final Color color;
+
+  const DashboardCard({
+    Key? key,
+    required this.title,
+    required this.value,
+    required this.icon,
+    required this.color,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [color, color.withOpacity(0.7)],
+        ),
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: color.withOpacity(0.3),
+            blurRadius: 20,
+            offset: Offset(0, 10),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(icon, color: Colors.white, size: 32),
+          SizedBox(height: 16),
+          Text(
+            title,
+            style: TextStyle(color: Colors.white70, fontSize: 14),
+          ),
+          SizedBox(height: 8),
+          Text(
+            value.toString(),
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}`,
+    
+    go_api: `package handlers
+
+import (
+    "encoding/json"
+    "net/http"
+    "github.com/gorilla/mux"
+    "gorm.io/gorm"
+)
+
+type Product struct {
+    ID          uint    \`json:"id" gorm:"primaryKey"\`
+    Name        string  \`json:"name" gorm:"not null"\`
+    Description string  \`json:"description"\`
+    Price       float64 \`json:"price" gorm:"not null"\`
+    Stock       int     \`json:"stock" gorm:"default:0"\`
+}
+
+type ProductHandler struct {
+    DB *gorm.DB
+}
+
+func (h *ProductHandler) GetProducts(w http.ResponseWriter, r *http.Request) {
+    var products []Product
+    
+    result := h.DB.Find(&products)
+    if result.Error != nil {
+        http.Error(w, result.Error.Error(), http.StatusInternalServerError)
+        return
+    }
+
+    w.Header().Set("Content-Type", "application/json")
+    json.NewEncoder(w).Encode(products)
+}
+
+func (h *ProductHandler) CreateProduct(w http.ResponseWriter, r *http.Request) {
+    var product Product
+    
+    if err := json.NewDecoder(r.Body).Decode(&product); err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
+    }
+
+    result := h.DB.Create(&product)
+    if result.Error != nil {
+        http.Error(w, result.Error.Error(), http.StatusInternalServerError)
+        return
+    }
+
+    w.Header().Set("Content-Type", "application/json")
+    w.WriteHeader(http.StatusCreated)
+    json.NewEncoder(w).Encode(product)
+}`,
+    
+    react_dashboard: `import React, { useState, useEffect } from 'react';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import axios from 'axios';
+
+const Dashboard = () => {
+  const [metrics, setMetrics] = useState({
+    users: 0,
+    revenue: 0,
+    orders: 0,
+    growth: 0
+  });
+  const [chartData, setChartData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchDashboardData = async () => {
+      try {
+        const { data } = await axios.get('/api/dashboard/metrics');
+        setMetrics(data.metrics);
+        setChartData(data.chartData);
+      } catch (error) {
+        console.error('Erreur lors du chargement:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDashboardData();
+  }, []);
+
+  if (loading) return <div className="loader">Chargement...</div>;
+
+  return (
+    <div className="dashboard-container">
+      <h1>Tableau de Bord</h1>
+      
+      <div className="metrics-grid">
+        <MetricCard title="Utilisateurs" value={metrics.users} icon="users" />
+        <MetricCard title="Revenu" value={\`\${metrics.revenue}K\`} icon="dollar" />
+        <MetricCard title="Commandes" value={metrics.orders} icon="shopping-cart" />
+        <MetricCard title="Croissance" value={\`\${metrics.growth}%\`} icon="trending-up" />
+      </div>
+
+      <div className="chart-container">
+        <LineChart width={800} height={400} data={chartData}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="month" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="revenue" stroke="#06b6d4" strokeWidth={2} />
+          <Line type="monotone" dataKey="users" stroke="#a855f7" strokeWidth={2} />
+        </LineChart>
+      </div>
+    </div>
+  );
+};
+
+export default Dashboard;`,
+    
+    python_ml: `import numpy as np
+import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, classification_report
+import joblib
+
+class SalesPredictionModel:
+    """Modèle de prédiction des ventes basé sur Machine Learning"""
+    
+    def __init__(self):
+        self.model = RandomForestClassifier(
+            n_estimators=100,
+            max_depth=10,
+            random_state=42
+        )
+        self.is_trained = False
+    
+    def prepare_data(self, data):
+        """Préparation et nettoyage des données"""
+        # Suppression des valeurs manquantes
+        data = data.dropna()
+        
+        # Feature engineering
+        data['month'] = pd.to_datetime(data['date']).dt.month
+        data['day_of_week'] = pd.to_datetime(data['date']).dt.dayofweek
+        data['is_weekend'] = data['day_of_week'].isin([5, 6]).astype(int)
+        
+        return data
+    
+    def train(self, X, y):
+        """Entraînement du modèle"""
+        X_train, X_test, y_train, y_test = train_test_split(
+            X, y, test_size=0.2, random_state=42
+        )
+        
+        self.model.fit(X_train, y_train)
+        self.is_trained = True
+        
+        # Évaluation
+        y_pred = self.model.predict(X_test)
+        accuracy = accuracy_score(y_test, y_pred)
+        
+        print(f"Précision du modèle: {accuracy:.2%}")
+        print(classification_report(y_test, y_pred))
+        
+        return accuracy
+    
+    def predict(self, features):
+        """Prédiction sur de nouvelles données"""
+        if not self.is_trained:
+            raise ValueError("Le modèle doit être entraîné d'abord")
+        
+        predictions = self.model.predict(features)
+        probabilities = self.model.predict_proba(features)
+        
+        return {
+            'predictions': predictions.tolist(),
+            'confidence': probabilities.max(axis=1).tolist()
+        }
+    
+    def save_model(self, filepath):
+        """Sauvegarde du modèle"""
+        joblib.dump(self.model, filepath)
+        print(f"Modèle sauvegardé: {filepath}")`
+};
+
+// ===== TYPING ANIMATION CLASS =====
+class TypeWriter {
+    constructor(elementId, text, speed = 80) {  // 80ms au lieu de 50ms
+        this.element = document.getElementById(elementId);
+        this.text = text;
+        this.speed = speed;
+        this.index = 0;
+        this.isTyping = false;
+    }
+    
+    async type() {
+        if (this.isTyping || !this.element) return;
+        
+        this.isTyping = true;
+        this.element.textContent = '';
+        this.index = 0;
+        
+        // Add line numbers
+        const lines = this.text.split('\n').length;
+        const lineNumbersEl = this.element.closest('.editor-content').querySelector('.line-numbers');
+        if (lineNumbersEl) {
+            lineNumbersEl.innerHTML = Array.from({length: lines}, (_, i) => `${i + 1}<br>`).join('');
+        }
+        
+        // Type character by character
+        while (this.index < this.text.length) {
+            const char = this.text[this.index];
+            this.element.textContent += char;
+            this.index++;
+            
+            // Add cursor
+            const cursor = document.createElement('span');
+            cursor.className = 'typing-cursor';
+            this.element.appendChild(cursor);
+            
+            await new Promise(resolve => setTimeout(resolve, this.speed));
+            
+            // Remove cursor for next iteration
+            if (this.element.querySelector('.typing-cursor')) {
+                this.element.querySelector('.typing-cursor').remove();
+            }
+        }
+        
+        this.isTyping = false;
+        this.applyHighlighting();
+    }
+    
+    applyHighlighting() {
+        if (!this.element) return;
+        
+        let html = this.element.textContent;
+        
+        // Keywords
+        const keywords = ['class', 'def', 'return', 'const', 'let', 'var', 'if', 'else', 'for', 'while', 
+                         'extends', 'import', 'from', 'async', 'await', 'function', 'package', 'type', 
+                         'struct', 'interface', 'func', 'try', 'catch', 'finally'];
+        keywords.forEach(kw => {
+            const regex = new RegExp(`\\b${kw}\\b`, 'g');
+            html = html.replace(regex, `<span class="kw">${kw}</span>`);
+        });
+        
+        // Strings
+        html = html.replace(/(['"`])(.*?)\1/g, '<span class="st">$1$2$1</span>');
+        
+        // Functions
+        html = html.replace(/\b([a-z_][a-z0-9_]*)\s*\(/gi, '<span class="fn">$1</span>(');
+        
+        // Classes
+        html = html.replace(/\b([A-Z][a-zA-Z0-9]*)\b/g, '<span class="cl">$1</span>');
+        
+        // Comments
+        html = html.replace(/(\/\/.*$|#.*$|\/\*[\s\S]*?\*\/)/gm, '<span class="cm">$1</span>');
+        
+        // Decorators
+        html = html.replace(/(@[a-zA-Z_][a-zA-Z0-9_]*)/g, '<span class="dc">$1</span>');
+        
+        // Numbers
+        html = html.replace(/\b(\d+\.?\d*)\b/g, '<span class="nm">$1</span>');
+        
+        this.element.innerHTML = html;
+    }
+    
+    reset() {
+        if (this.element) {
+            this.element.textContent = '';
+            this.index = 0;
+            this.isTyping = false;
+        }
+    }
+}
+
+// ===== HERO CAROUSEL CLASS =====
+class HeroCarousel {
+    constructor() {
+        this.slides = document.querySelectorAll('.hero-slide');
+        this.dots = document.querySelectorAll('.carousel-dots .dot');
+        this.currentIndex = 0;
+        this.interval = null;
+        this.typeWriters = {};
+        
+        this.init();
+    }
+    
+    init() {
+        // Initialize typewriters avec vitesse plus lente (80ms)
+        this.typeWriters = {
+            python_api: new TypeWriter('typing-code-1', codeSnippets.python_api, 100),
+            flutter_widget: new TypeWriter('typing-code-2', codeSnippets.flutter_widget, 100),
+            go_api: new TypeWriter('typing-code-3', codeSnippets.go_api, 100),
+            react_dashboard: new TypeWriter('typing-code-4', codeSnippets.react_dashboard, 100),
+            python_ml: new TypeWriter('typing-code-5', codeSnippets.python_ml, 100)
+        };
+        
+        // Setup dot navigation
+        this.dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                this.goToSlide(index);
+            });
+        });
+        
+        // Start first slide
+        this.showSlide(0);
+        this.startAutoplay();
+    }
+    
+    async showSlide(index) {
+        // Remove active from all
+        this.slides.forEach(slide => slide.classList.remove('active'));
+        this.dots.forEach(dot => dot.classList.remove('active'));
+        
+        // Add active to current
+        this.slides[index].classList.add('active');
+        this.dots[index].classList.add('active');
+        
+        // Trigger typing animation for code slides
+        if (index === 0) {
+            await this.typeWriters.python_api.type();
+        } else if (index === 2) {
+            await this.typeWriters.flutter_widget.type();
+        } else if (index === 4) {
+            await this.typeWriters.go_api.type();
+        } else if (index === 6) {
+            await this.typeWriters.react_dashboard.type();
+        } else if (index === 8) {
+            await this.typeWriters.python_ml.type();
+        }
+        
+        this.currentIndex = index;
+    }
+    
+    nextSlide() {
+        const nextIndex = (this.currentIndex + 1) % this.slides.length;
+        this.showSlide(nextIndex);
+    }
+    
+    goToSlide(index) {
+        this.stopAutoplay();
+        this.showSlide(index);
+        this.startAutoplay();
+    }
+    
+    startAutoplay() {
+        this.interval = setInterval(() => {
+            this.nextSlide();
+        }, 20000); // 10 secondes par slide (au lieu de 6s)
+    }
+    
+    stopAutoplay() {
+        if (this.interval) {
+            clearInterval(this.interval);
+        }
+    }
+}
+
+// ===== TRUEFOCUS ANIMATION =====
+class TrueFocus {
+    constructor(container, options = {}) {
+        this.container = container;
+        this.options = {
+            sentence: options.sentence || 'Développeur Flutter • Expert Python • Développeur React • Architecte Backend Go • Chef de Projet',
+            separator: options.separator || ' • ',
+            manualMode: options.manualMode || false,
+            blurAmount: options.blurAmount || 6,
+            borderColor: options.borderColor || '#06b6d4',
+            glowColor: options.glowColor || 'rgba(6, 182, 212, 0.6)',
+            animationDuration: options.animationDuration || 0.6,
+            pauseBetweenAnimations: options.pauseBetweenAnimations || 2.5
+        };
+        
+        this.words = this.options.sentence.split(this.options.separator);
+        this.currentIndex = 0;
+        this.lastActiveIndex = null;
+        this.wordElements = [];
+        
+        this.init();
+    }
+    
+    init() {
+        this.render();
+        if (!this.options.manualMode) {
+            this.startAutoAnimation();
+        }
+    }
+    
+    render() {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'relative flex gap-4 justify-center items-center flex-wrap px-4';
+        wrapper.style.outline = 'none';
+        wrapper.style.userSelect = 'none';
+        
+        this.words.forEach((word, index) => {
+            const span = document.createElement('span');
+            span.className = 'true-focus-word relative text-3xl md:text-5xl font-black cursor-pointer transition-all duration-300';
+            span.textContent = word;
+            span.style.filter = index === 0 ? 'blur(0px)' : `blur(${this.options.blurAmount}px)`;
+            span.style.transition = `filter ${this.options.animationDuration}s ease, transform 0.3s ease`;
+            
+            if (this.options.manualMode) {
+                span.addEventListener('mouseenter', () => this.handleMouseEnter(index));
+                span.addEventListener('mouseleave', () => this.handleMouseLeave());
+            }
+            
+            span.addEventListener('mouseenter', () => {
+                span.style.transform = 'scale(1.05)';
+            });
+            
+            span.addEventListener('mouseleave', () => {
+                span.style.transform = 'scale(1)';
+            });
+            
+            this.wordElements.push(span);
+            wrapper.appendChild(span);
+        });
+        
+        // Create focus border
+        this.focusBorder = document.createElement('div');
+        this.focusBorder.className = 'focus-border absolute pointer-events-none';
+        this.focusBorder.style.transition = `all ${this.options.animationDuration}s cubic-bezier(0.4, 0, 0.2, 1)`;
+        this.focusBorder.style.opacity = '0';
+        
+        // Create corner brackets
+        const corners = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
+        corners.forEach(corner => {
+            const bracket = document.createElement('span');
+            bracket.className = 'focus-corner';
+            bracket.style.borderColor = this.options.borderColor;
+            bracket.style.filter = `drop-shadow(0 0 8px ${this.options.borderColor})`;
+            
+            switch(corner) {
+                case 'top-left':
+                    bracket.style.top = '-10px';
+                    bracket.style.left = '-10px';
+                    bracket.style.borderRight = '0';
+                    bracket.style.borderBottom = '0';
+                    break;
+                case 'top-right':
+                    bracket.style.top = '-10px';
+                    bracket.style.right = '-10px';
+                    bracket.style.borderLeft = '0';
+                    bracket.style.borderBottom = '0';
+                    break;
+                case 'bottom-left':
+                    bracket.style.bottom = '-10px';
+                    bracket.style.left = '-10px';
+                    bracket.style.borderRight = '0';
+                    bracket.style.borderTop = '0';
+                    break;
+                case 'bottom-right':
+                    bracket.style.bottom = '-10px';
+                    bracket.style.right = '-10px';
+                    bracket.style.borderLeft = '0';
+                    bracket.style.borderTop = '0';
+                    break;
+            }
+            
+            this.focusBorder.appendChild(bracket);
+        });
+        
+        wrapper.appendChild(this.focusBorder);
+        this.container.appendChild(wrapper);
+        
+        // Initial focus position
+        setTimeout(() => this.updateFocusPosition(0), 100);
+    }
+    
+    updateFocusPosition(index) {
+        if (index < 0 || index >= this.wordElements.length) return;
+        
+        const targetWord = this.wordElements[index];
+        const rect = targetWord.getBoundingClientRect();
+        const containerRect = this.container.getBoundingClientRect();
+        
+        this.focusBorder.style.left = `${rect.left - containerRect.left}px`;
+        this.focusBorder.style.top = `${rect.top - containerRect.top}px`;
+        this.focusBorder.style.width = `${rect.width}px`;
+        this.focusBorder.style.height = `${rect.height}px`;
+        this.focusBorder.style.opacity = '1';
+        
+        // Update word blur and color
+        this.wordElements.forEach((word, i) => {
+            if (i === index) {
+                word.style.filter = 'blur(0px)';
+                word.style.background = 'linear-gradient(135deg, #06b6d4, #a855f7)';
+                word.style.webkitBackgroundClip = 'text';
+                word.style.webkitTextFillColor = 'transparent';
+                word.style.backgroundClip = 'text';
+            } else {
+                word.style.filter = `blur(${this.options.blurAmount}px)`;
+                word.style.background = '';
+                word.style.webkitBackgroundClip = '';
+                word.style.webkitTextFillColor = '';
+                word.style.backgroundClip = '';
+                word.style.color = '#fff';
+            }
+        });
+    }
+    
+    startAutoAnimation() {
+        this.animationInterval = setInterval(() => {
+            this.currentIndex = (this.currentIndex + 1) % this.words.length;
+            this.updateFocusPosition(this.currentIndex);
+        }, (this.options.animationDuration + this.options.pauseBetweenAnimations) * 1000);
+    }
+    
+    handleMouseEnter(index) {
+        if (this.options.manualMode) {
+            this.lastActiveIndex = this.currentIndex;
+            this.currentIndex = index;
+            this.updateFocusPosition(index);
+        }
+    }
+    
+    handleMouseLeave() {
+        if (this.options.manualMode) {
+            this.currentIndex = this.lastActiveIndex;
+            this.updateFocusPosition(this.currentIndex);
+        }
+    }
+    
+    destroy() {
+        if (this.animationInterval) {
+            clearInterval(this.animationInterval);
+        }
+    }
+}
+
+// ===== INITIALIZE ON PAGE LOAD =====
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize Hero Carousel with typing
+    const heroCarousel = new HeroCarousel();
+    
+    // Initialize TrueFocus
+    const container = document.getElementById('true-focus-container');
+    if (container) {
+        new TrueFocus(container, {
+            sentence: 'Développeur Flutter • Expert Python • Développeur React • Architecte Backend Go • Chef de Projet',
+            separator: ' • ',
+            manualMode: false,
+            blurAmount: 6,
+            borderColor: '#06b6d4',
+            animationDuration: 0.7,
+            pauseBetweenAnimations: 2.5
+        });
+    }
+});
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+</script>
+{% endblock %}

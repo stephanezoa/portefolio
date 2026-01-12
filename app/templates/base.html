@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Developer Portfolio{% endblock %}</title>
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-bg': '#0a0a0a',
+                        'card-bg': '#1a1a1a',
+                        'cyan': {
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- ⭐ VOTRE FICHIER CSS PERSONNALISÉ -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    
+    <style>
+        /* Animation pour le bouton CV */
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(6, 182, 212, 0.8), 0 0 40px rgba(168, 85, 247, 0.4);
+            }
+        }
+        
+        .cv-button {
+            animation: pulse-glow 2s infinite;
+        }
+        
+        .cv-button:hover {
+            animation: none;
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-white font-sans antialiased">
+
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-black/80 backdrop-blur-md z-50 border-b border-gray-800/50">
+        <nav class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="text-xl font-bold">
+                    <span class="gradient-text">Stephane Zoa</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <ul class="hidden md:flex space-x-8 items-center">
+                    <li><a href="{{ url_for('main.home') }}" class="hover:text-cyan-400 transition-colors duration-300">Home</a></li>
+                    <li><a href="{{ url_for('projects.projects') }}" class="hover:text-cyan-400 transition-colors duration-300">Work</a></li>
+                    <li><a href="{{ url_for('main.skills') }}" class="hover:text-cyan-400 transition-colors duration-300">Skills</a></li>
+                    <li><a href="{{ url_for('main.experience') }}" class="hover:text-cyan-400 transition-colors duration-300">Experience</a></li>
+                    <li><a href="{{ url_for('main.testimonials') }}" class="hover:text-cyan-400 transition-colors duration-300">Testimonials</a></li>
+                    
+                    <!-- Bouton Télécharger CV -->
+                    <li>
+                        <a href="{{ url_for('static', filename='documents/CV_Stephane_Zoa.pdf') }}" 
+                           download="CV_Stephane_Zoa.pdf"
+                           class="cv-button bg-gradient-to-r from-purple-600 to-cyan-500 px-5 py-2 rounded-lg hover:from-purple-700 hover:to-cyan-600 transition-all duration-300 flex items-center gap-2 font-semibold">
+                            <i class="fas fa-download"></i>
+                            <span>CV</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="{{ url_for('contact.contact') }}" 
+                           class="bg-cyan-500 px-6 py-2 rounded-lg hover:bg-cyan-600 transition-all duration-300 glow">
+                            Contact me
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-2xl focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-full h-screen bg-black/95 md:hidden">
+            <div class="flex flex-col items-center justify-center h-full space-y-8">
+                <button id="close-menu" class="absolute top-6 right-6 text-3xl">
+                    <i class="fas fa-times"></i>
+                </button>
+                <a href="{{ url_for('main.home') }}" class="text-2xl hover:text-cyan-400 transition">Home</a>
+                <a href="{{ url_for('projects.projects') }}" class="text-2xl hover:text-cyan-400 transition">Work</a>
+                <a href="{{ url_for('main.skills') }}" class="text-2xl hover:text-cyan-400 transition">Skills</a>
+                <a href="{{ url_for('main.experience') }}" class="text-2xl hover:text-cyan-400 transition">Experience</a>
+                <a href="{{ url_for('main.testimonials') }}" class="text-2xl hover:text-cyan-400 transition">Testimonials</a>
+                
+                <!-- Bouton CV Mobile -->
+                <a href="{{ url_for('static', filename='documents/CV_Stephane_Zoa.pdf') }}" 
+                   download="CV_Stephane_Zoa.pdf"
+                   class="cv-button bg-gradient-to-r from-purple-600 to-cyan-500 px-8 py-3 rounded-lg text-xl hover:from-purple-700 hover:to-cyan-600 transition flex items-center gap-3">
+                    <i class="fas fa-download"></i>
+                    <span>Télécharger CV</span>
+                </a>
+                
+                <a href="{{ url_for('contact.contact') }}" 
+                   class="bg-cyan-500 px-8 py-3 rounded-lg text-xl hover:bg-cyan-600 transition">
+                    Contact me
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div id="flash-container" class="fixed top-24 right-6 z-50 space-y-2">
+                {% for category, message in messages %}
+                    <div class="flash-message px-6 py-3 rounded-lg {% if category == 'error' %}bg-red-500{% else %}bg-green-500{% endif %} text-white shadow-lg animate-slide-in">
+                        <div class="flex items-center justify-between">
+                            <span>{{ message }}</span>
+                            <button onclick="this.parentElement.parentElement.remove()" class="ml-4 text-xl hover:scale-110 transition-transform">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            
+            <script>
+                // Auto-dismiss flash messages after 5 seconds
+                setTimeout(() => {
+                    const flashMessages = document.querySelectorAll('.flash-message');
+                    flashMessages.forEach(msg => {
+                        msg.style.opacity = '0';
+                        msg.style.transform = 'translateX(100%)';
+                        setTimeout(() => msg.remove(), 300);
+                    });
+                }, 5000);
+            </script>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-12 px-6">
+        <div class="max-w-7xl mx-auto">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-gray-800 py-12 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <!-- About -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 gradient-text">Stephane Zoa</h3>
+                    <p class="text-gray-400">Développeur Full-stack passionné par la création d'expériences digitales exceptionnelles.</p>
+                    
+                    <!-- Bouton CV dans le footer -->
+                    <a href="{{ url_for('static', filename='documents/CV_Stephane_Zoa.pdf') }}" 
+                       download="CV_Stephane_Zoa.pdf"
+                       class="mt-4 inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-cyan-500 px-4 py-2 rounded-lg hover:from-purple-700 hover:to-cyan-600 transition-all duration-300 text-sm font-semibold">
+                        <i class="fas fa-file-download"></i>
+                        <span>Télécharger mon CV</span>
+                    </a>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Liens Rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="{{ url_for('main.home') }}" class="text-gray-400 hover:text-cyan-400 transition">Accueil</a></li>
+                        <li><a href="{{ url_for('projects.projects') }}" class="text-gray-400 hover:text-cyan-400 transition">Projets</a></li>
+                        <li><a href="{{ url_for('main.skills') }}" class="text-gray-400 hover:text-cyan-400 transition">Compétences</a></li>
+                        <li><a href="{{ url_for('contact.contact') }}" class="text-gray-400 hover:text-cyan-400 transition">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Restons Connectés</h3>
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/stephanezoa" target="_blank" rel="noopener noreferrer"
+                           class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-cyan-500 transition">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/stephanezoa" target="_blank" rel="noopener noreferrer"
+                           class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-cyan-500 transition">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://twitter.com/stephanezoa" target="_blank" rel="noopener noreferrer"
+                           class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-cyan-500 transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://wa.me/237686002112" target="_blank" rel="noopener noreferrer"
+                           class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-500 transition">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-gray-400">© 2026 Stephane Zoa. Tous droits réservés.</p>
+                <p class="text-sm text-gray-400 mt-4 md:mt-0">Développé avec <span class="text-red-500">❤</span> et Flask</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- ⭐ VOTRE FICHIER JAVASCRIPT PERSONNALISÉ -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

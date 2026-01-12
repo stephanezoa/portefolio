@@ -1,0 +1,342 @@
+{% extends "base.html" %}
+
+{% block title %}Expérience Professionnelle{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="text-center mb-16" data-aos="fade-up">
+    <p class="text-cyan-400 text-sm font-semibold mb-2">💼 Mon Parcours Professionnel</p>
+    <h1 class="text-5xl font-extrabold mb-4">
+        Expérience <span class="gradient-text">Professionnelle</span>
+    </h1>
+    <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+        Plus de 5 ans d'expérience dans le développement Full Stack, la gestion de projets et l'intégration de solutions de paiement pour startups et PME.
+    </p>
+</div>
+
+<!-- Timeline Section -->
+<div class="max-w-4xl mx-auto mb-32">
+    {% set experiences = [
+        {
+            'title': 'Développeur Full Stack & Chef de Projet',
+            'company': 'HR-SKILLS',
+            'period': '2022 – 2024',
+            'color': 'cyan',
+            'icon': 'fa-code',
+            'description': 'Développement d\'applications web et mobile pour des clients diversifiés, avec une expertise particulière en intégration de solutions de paiement et gestion d\'équipes techniques.',
+            'responsibilities': [
+                'Développement d\'applications web et mobile avec Flutter, Python et PHP',
+                'Intégration de multiples API de paiement (MTN Mobile Money, Orange Money, Stripe)',
+                'Création de plugins de paiement personnalisés pour WooCommerce',
+                'Gestion de projets techniques et coordination des équipes de développement',
+                'Chef de projet et développeur principal sur le projet Perenkap, de la conception au déploiement',
+                'Création de nombreux sites web professionnels pour startups et PME'
+            ],
+            'technologies': ['Flutter', 'Python', 'PHP', 'WooCommerce', 'Stripe API', 'MTN API', 'Orange API', 'Scrum']
+        },
+        {
+            'title': 'Intégrateur Solutions de Paiement Mobile',
+            'company': 'Saamaya',
+            'period': '2023 – 2024',
+            'color': 'orange',
+            'icon': 'fa-mobile-alt',
+            'description': 'Intégration de solutions MTN Mobile Money pour faciliter les transactions financières mobiles et améliorer l\'expérience utilisateur.',
+            'responsibilities': [
+                'Intégration complète de l\'API MTN Mobile Money',
+                'Développement de systèmes de paiement sécurisés et performants',
+                'Tests et validation des transactions financières',
+                'Documentation technique pour les équipes internes',
+                'Support technique et maintenance des solutions de paiement'
+            ],
+            'technologies': ['MTN Mobile Money API', 'PHP', 'Python', 'REST API', 'Sécurité des paiements']
+        },
+        {
+            'title': 'Développeur Intégration Mobile Money',
+            'company': 'Roy Tita Ltd',
+            'period': '2022 – 2023',
+            'color': 'yellow',
+            'icon': 'fa-credit-card',
+            'description': 'Spécialisation dans l\'intégration MTN Mobile Money pour des solutions de paiement e-commerce et applications métier.',
+            'responsibilities': [
+                'Intégration MTN Mobile Money pour plateformes e-commerce',
+                'Développement de modules de paiement personnalisés',
+                'Optimisation des flux de paiement pour une meilleure conversion',
+                'Gestion des webhooks et notifications de paiement',
+                'Conformité aux standards de sécurité MTN'
+            ],
+            'technologies': ['MTN Mobile Money', 'WooCommerce', 'PHP', 'API Integration', 'Webhooks']
+        },
+        {
+            'title': 'Développeur Intégration Mobile Money E-commerce',
+            'company': 'Aloevera Energie',
+            'period': '2025',
+            'color': 'green',
+            'icon': 'fa-shopping-cart',
+            'description': 'Intégration MTN Mobile Money pour plateforme e-commerce, optimisant l\'expérience de paiement pour les clients en ligne.',
+            'responsibilities': [
+                'Intégration MTN Mobile Money pour boutique en ligne',
+                'Développement de solutions de paiement e-commerce sécurisées',
+                'Optimisation du tunnel de paiement pour réduire l\'abandon de panier',
+                'Gestion des transactions et réconciliation des paiements',
+                'Support technique et maintenance de la solution de paiement'
+            ],
+            'technologies': ['MTN Mobile Money', 'WooCommerce', 'PHP', 'E-commerce', 'API REST']
+        },
+        {
+            'title': 'Stagiaire en Développement',
+            'company': 'Brasserie du Cameroun',
+            'period': '2021 – 2022',
+            'color': 'blue',
+            'icon': 'fa-laptop-code',
+            'description': 'Participation active aux projets numériques et technologiques internes, avec focus sur l\'automatisation et l\'optimisation des processus.',
+            'responsibilities': [
+                'Participation à des projets numériques et technologiques internes',
+                'Mise en pratique de compétences en programmation et automatisation',
+                'Développement de solutions pour optimiser les workflows internes',
+                'Collaboration avec les équipes techniques pour l\'amélioration des systèmes existants'
+            ],
+            'technologies': ['Python', 'PHP', 'Automatisation', 'Optimisation']
+        },
+        {
+            'title': 'Formateur Professionnel Arduino',
+            'company': 'SEED SCHOLAR',
+            'period': '2019 – 2021',
+            'color': 'green',
+            'icon': 'fa-chalkboard-teacher',
+            'description': 'Formation de professionnels et d\'étudiants à la programmation Arduino, à la robotique et au prototypage électronique, avec création de contenus pédagogiques innovants.',
+            'responsibilities': [
+                'Formation de professionnels sur la programmation Arduino et la robotique',
+                'Création de contenus pédagogiques et projets pratiques pour les apprenants',
+                'Développement de modules de formation sur l\'électronique interactive',
+                'Accompagnement des apprenants dans la réalisation de projets concrets',
+                'Animation d\'ateliers pratiques de prototypage et d\'innovation'
+            ],
+            'technologies': ['Arduino', 'C/C++', 'Électronique', 'Robotique', 'IoT', 'Pédagogie']
+        }
+    ] %}
+    
+    {% for exp in experiences %}
+    <div class="relative pl-8 {% if not loop.last %}pb-12 border-l-2 border-gray-800{% endif %}" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 100 }}">
+        <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-{{ exp.color }}-500 to-{{ exp.color }}-600 rounded-full flex items-center justify-center shadow-lg shadow-{{ exp.color }}-500/50">
+            <i class="fas {{ exp.icon }} text-sm text-white"></i>
+        </div>
+        
+        <div class="bg-card-bg rounded-xl p-8 border border-gray-800 card-hover">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                <div>
+                    <h3 class="text-2xl font-bold mb-2">{{ exp.title }}</h3>
+                    <div class="flex items-center gap-2 text-gray-400 mb-2">
+                        <i class="fas fa-building"></i>
+                        <span class="font-semibold">{{ exp.company }}</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 text-{{ exp.color }}-400 bg-{{ exp.color }}-500/10 px-4 py-2 rounded-lg mt-4 md:mt-0">
+                    <i class="fas fa-calendar"></i>
+                    <span>{{ exp.period }}</span>
+                </div>
+            </div>
+            
+            <div class="space-y-3 text-gray-300">
+                <p class="leading-relaxed">{{ exp.description }}</p>
+                <ul class="space-y-2 ml-4">
+                    {% for responsibility in exp.responsibilities %}
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-{{ exp.color }}-400 mt-1 mr-3"></i>
+                        <span>{{ responsibility }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+            <div class="flex flex-wrap gap-2 mt-6">
+                {% for tech in exp.technologies %}
+                <span class="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-sm">{{ tech }}</span>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Education Section -->
+<div class="mb-32">
+    <div class="text-center mb-16" data-aos="fade-up">
+        <p class="text-purple-400 text-sm font-semibold mb-2">🎓 Formation Académique</p>
+        <h2 class="text-4xl font-bold">
+            Mon <span class="gradient-text">Parcours Académique</span>
+        </h2>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-8">
+        <div class="bg-card-bg rounded-xl p-8 border border-gray-800 card-hover" data-aos="fade-right">
+            <div class="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mb-6">
+                <i class="fas fa-graduation-cap text-3xl text-purple-400"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-2">DTS – Développement Informatique</h3>
+            <p class="text-gray-400 mb-4">IAI CAMEROUN | 2024-2025</p>
+            <p class="text-gray-300 leading-relaxed">
+                Formation approfondie en développement informatique avec spécialisation en Flutter, Python et méthodologie Scrum.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-6">
+                <span class="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-sm">Flutter</span>
+                <span class="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-sm">Python</span>
+                <span class="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-sm">Scrum</span>
+            </div>
+        </div>
+        
+        <div class="bg-card-bg rounded-xl p-8 border border-gray-800 card-hover" data-aos="fade-left">
+            <div class="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mb-6">
+                <i class="fas fa-microchip text-3xl text-green-400"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-2">Arduino – Prototypage et Électronique Interactive</h3>
+            <p class="text-gray-400 mb-4">Formation Complémentaire</p>
+            <p class="text-gray-300 leading-relaxed">
+                Expertise en prototypage électronique, programmation embarquée et création de projets IoT innovants.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-6">
+                <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm">Arduino</span>
+                <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm">IoT</span>
+                <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm">Électronique</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Additional Training -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div class="bg-card-bg rounded-xl p-6 border border-gray-800 card-hover" data-aos="zoom-in" data-aos-delay="100">
+            <div class="w-14 h-14 bg-cyan-500/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                <i class="fab fa-flutter text-2xl text-cyan-400"></i>
+            </div>
+            <h4 class="text-lg font-bold mb-2 text-center">Formation Flutter</h4>
+            <p class="text-gray-400 text-sm text-center">Développement d'applications mobiles cross-platform</p>
+            <div class="flex flex-wrap gap-2 mt-4 justify-center">
+                <span class="bg-cyan-500/20 text-cyan-400 px-2 py-1 rounded-full text-xs">Dart</span>
+                <span class="bg-cyan-500/20 text-cyan-400 px-2 py-1 rounded-full text-xs">Mobile</span>
+            </div>
+        </div>
+        
+        <div class="bg-card-bg rounded-xl p-6 border border-gray-800 card-hover" data-aos="zoom-in" data-aos-delay="200">
+            <div class="w-14 h-14 bg-blue-500/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                <i class="fab fa-python text-2xl text-blue-400"></i>
+            </div>
+            <h4 class="text-lg font-bold mb-2 text-center">Formation Python</h4>
+            <p class="text-gray-400 text-sm text-center">Développement backend et automatisation</p>
+            <div class="flex flex-wrap gap-2 mt-4 justify-center">
+                <span class="bg-blue-500/20 text-blue-400 px-2 py-1 rounded-full text-xs">Backend</span>
+                <span class="bg-blue-500/20 text-blue-400 px-2 py-1 rounded-full text-xs">API</span>
+            </div>
+        </div>
+        
+        <div class="bg-card-bg rounded-xl p-6 border border-gray-800 card-hover" data-aos="zoom-in" data-aos-delay="300">
+            <div class="w-14 h-14 bg-orange-500/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                <i class="fas fa-server text-2xl text-orange-400"></i>
+            </div>
+            <h4 class="text-lg font-bold mb-2 text-center">Bases DevOps</h4>
+            <p class="text-gray-400 text-sm text-center">CI/CD, déploiement et automatisation</p>
+            <div class="flex flex-wrap gap-2 mt-4 justify-center">
+                <span class="bg-orange-500/20 text-orange-400 px-2 py-1 rounded-full text-xs">Docker</span>
+                <span class="bg-orange-500/20 text-orange-400 px-2 py-1 rounded-full text-xs">CI/CD</span>
+            </div>
+        </div>
+        
+        <div class="bg-card-bg rounded-xl p-6 border border-gray-800 card-hover" data-aos="zoom-in" data-aos-delay="400">
+            <div class="w-14 h-14 bg-pink-500/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                <i class="fas fa-chart-bar text-2xl text-pink-400"></i>
+            </div>
+            <h4 class="text-lg font-bold mb-2 text-center">Bases Data</h4>
+            <p class="text-gray-400 text-sm text-center">Analyse de données et visualisation</p>
+            <div class="flex flex-wrap gap-2 mt-4 justify-center">
+                <span class="bg-pink-500/20 text-pink-400 px-2 py-1 rounded-full text-xs">Analytics</span>
+                <span class="bg-pink-500/20 text-pink-400 px-2 py-1 rounded-full text-xs">SQL</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Skills Section -->
+<div class="mb-32">
+    <div class="text-center mb-16" data-aos="fade-up">
+        <p class="text-cyan-400 text-sm font-semibold mb-2">💡 Mes Compétences Clés</p>
+        <h2 class="text-4xl font-bold">
+            Comment Je Peux Contribuer & Mes <span class="gradient-text">Expertises</span>
+        </h2>
+    </div>
+    
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        {% set skills = [
+            {'icon': 'fa-mobile-alt', 'name': 'Développeur Flutter', 'color': 'cyan'},
+            {'icon': 'fa-python', 'name': 'Développeur Python', 'color': 'blue'},
+            {'icon': 'fa-shopping-cart', 'name': 'Expert WooCommerce', 'color': 'green'},
+            {'icon': 'fa-credit-card', 'name': 'Intégration Paiement', 'color': 'purple'},
+            {'icon': 'fa-project-diagram', 'name': 'Chef de Projet', 'color': 'red'}
+        ] %}
+        
+        {% for skill in skills %}
+        <div class="bg-card-bg rounded-xl p-6 text-center card-hover border border-gray-800 group" 
+             data-aos="zoom-in" 
+             data-aos-delay="{{ loop.index * 100 }}">
+            <div class="w-20 h-20 mx-auto mb-4 bg-{{ skill.color }}-500/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <i class="fab {{ skill.icon }} text-4xl text-{{ skill.color }}-400"></i>
+            </div>
+            <h4 class="font-semibold text-sm">{{ skill.name }}</h4>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Languages Section -->
+<div class="mb-32">
+    <div class="text-center mb-16" data-aos="fade-up">
+        <p class="text-cyan-400 text-sm font-semibold mb-2">🌍 Compétences Linguistiques</p>
+        <h2 class="text-4xl font-bold">
+            <span class="gradient-text">Langues</span>
+        </h2>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+        <div class="bg-card-bg rounded-xl p-8 border border-gray-800 card-hover text-center" data-aos="zoom-in">
+            <div class="w-20 h-20 mx-auto mb-4 bg-cyan-500/20 rounded-full flex items-center justify-center">
+                <i class="fas fa-flag text-4xl text-cyan-400"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-2">Français</h3>
+            <p class="text-gray-400">Langue Maternelle</p>
+            <div class="flex justify-center gap-1 mt-4">
+                <i class="fas fa-star text-yellow-400"></i>
+                <i class="fas fa-star text-yellow-400"></i>
+                <i class="fas fa-star text-yellow-400"></i>
+                <i class="fas fa-star text-yellow-400"></i>
+                <i class="fas fa-star text-yellow-400"></i>
+            </div>
+        </div>
+        
+        <div class="bg-card-bg rounded-xl p-8 border border-gray-800 card-hover text-center" data-aos="zoom-in" data-aos-delay="100">
+            <div class="w-20 h-20 mx-auto mb-4 bg-blue-500/20 rounded-full flex items-center justify-center">
+                <i class="fas fa-flag text-4xl text-blue-400"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-2">Anglais</h3>
+            <p class="text-gray-400">Niveau Professionnel</p>
+            <div class="flex justify-center gap-1 mt-4">
+                <i class="fas fa-star text-yellow-400"></i>
+                <i class="fas fa-star text-yellow-400"></i>
+                <i class="far fa-star text-gray-600"></i>
+                <i class="far fa-star text-gray-600"></i>
+                <i class="far fa-star text-gray-600"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA Section -->
+<div class="bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-2xl p-12 text-center border border-cyan-500/20" 
+     data-aos="zoom-in">
+    <p class="text-cyan-400 text-sm font-semibold mb-2">💬 Témoignages Clients</p>
+    <h2 class="text-4xl font-bold mb-4">Qu'en Disent Mes Clients ?</h2>
+    <p class="text-xl text-gray-300 mb-8">
+        Ne vous contentez pas de mes paroles - découvrez les retours des clients qui ont travaillé avec moi
+    </p>
+    <a href="{{ url_for('main.testimonials') }}" 
+       class="inline-block bg-cyan-500 hover:bg-cyan-600 px-10 py-4 rounded-lg text-lg font-medium transition-all duration-300 glow">
+        Lire les Témoignages <i class="fas fa-arrow-right ml-2"></i>
+    </a>
+</div>
+{% endblock %}

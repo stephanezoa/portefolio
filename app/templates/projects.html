@@ -35,10 +35,16 @@
          data-category="{{ project.category }}">
         <!-- Project Image -->
         <div class="relative overflow-hidden group h-64">
+            {% if project.image %}
             <img src="{{ url_for('static', filename='images/' + project.image) }}" 
-                 alt="{{ project.title }}"
-                 onerror="this.src='{{ project.fallback }}'"
-                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                 alt="{{ project.title }}" loading="lazy"
+                 class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110">
+            {% else %}
+            <div class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-{{ project.color }}-500/20 via-gray-900 to-gray-950">
+                <i class="fas {{ project.icon }} text-6xl text-{{ project.color }}-400 mb-3"></i>
+                <span class="text-sm font-semibold text-gray-400">{{ project.title }}</span>
+            </div>
+            {% endif %}
             
             <!-- Overlay -->
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -74,6 +80,7 @@
                 {{ project.title }}
             </h3>
             <p class="text-gray-400 text-sm mb-3">{{ project.subtitle }}</p>
+            {% if project.status %}<p class="text-xs mb-3 {{ 'text-green-400' if project.status == 'En production' else 'text-gray-500' }}"><i class="fas fa-circle text-[6px] align-middle mr-1"></i>{{ project.status }}{% if project.local %} · <span class="text-amber-400"><i class="fas fa-lock mr-1"></i>Projet local</span>{% endif %}</p>{% endif %}
             <p class="text-gray-300 mb-4 line-clamp-2">{{ project.description }}</p>
             
             <!-- Technologies -->
@@ -102,7 +109,7 @@
 <!-- Project Stats -->
 <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16" data-aos="fade-up">
     <div class="bg-card-bg p-6 rounded-xl text-center border border-gray-800">
-        <div class="text-4xl font-bold text-cyan-400 mb-2">{{ projects|length }}+</div>
+        <div class="text-4xl font-bold text-cyan-400 mb-2">{{ projects|length }}</div>
         <div class="text-sm text-gray-400">Total Projects</div>
     </div>
     <div class="bg-card-bg p-6 rounded-xl text-center border border-gray-800">
@@ -110,12 +117,12 @@
         <div class="text-sm text-gray-400">Categories</div>
     </div>
     <div class="bg-card-bg p-6 rounded-xl text-center border border-gray-800">
-        <div class="text-4xl font-bold text-green-400 mb-2">100%</div>
-        <div class="text-sm text-gray-400">Success Rate</div>
+        <div class="text-4xl font-bold text-green-400 mb-2">{{ projects|selectattr('status', 'equalto', 'En production')|list|length }}</div>
+        <div class="text-sm text-gray-400">En production</div>
     </div>
     <div class="bg-card-bg p-6 rounded-xl text-center border border-gray-800">
-        <div class="text-4xl font-bold text-orange-400 mb-2">24/7</div>
-        <div class="text-sm text-gray-400">Support</div>
+        <div class="text-4xl font-bold text-orange-400 mb-2">{{ projects|selectattr('local')|list|length }}</div>
+        <div class="text-sm text-gray-400">Projets locaux</div>
     </div>
 </div>
 
@@ -140,13 +147,21 @@
                 </button>
             </div>
             
-            <img id="modal-image" src="" alt="" class="w-full h-64 object-cover rounded-xl mb-6">
+            <img id="modal-image" src="" alt="" class="w-full h-64 object-cover object-top rounded-xl mb-6">
             
+            <div id="modal-meta" class="flex flex-wrap gap-2 mb-4 text-xs font-semibold"></div>
             <p id="modal-description" class="text-gray-300 mb-6"></p>
-            
+
+            <div id="modal-metrics" class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6"></div>
+
+            <div id="modal-features-wrap" class="mb-6">
+                <h3 class="text-xl font-bold mb-3">Ce que fait l'application</h3>
+                <ul id="modal-features" class="grid md:grid-cols-2 gap-x-6 gap-y-2 text-gray-300 text-sm"></ul>
+            </div>
+
             <div class="mb-6">
-                <h3 class="text-xl font-bold mb-3">Technologies Used</h3>
-                <div id="modal-technologies" class="flex flex-wrap gap-2"></div>
+                <h3 class="text-xl font-bold mb-3">Technologies utilisées</h3>
+                <div id="modal-stack" class="space-y-3"></div>
             </div>
             
             <div class="flex gap-4">
@@ -215,18 +230,48 @@ viewDetailsBtns.forEach(btn => {
         
         if (project) {
             document.getElementById('modal-title').textContent = project.title;
-            document.getElementById('modal-image').src = project.fallback;
+            const modalImg = document.getElementById('modal-image');
+            if (project.image) {
+                modalImg.src = '{{ url_for('static', filename='images/') }}' + project.image;
+                modalImg.classList.remove('hidden');
+            } else {
+                modalImg.classList.add('hidden');
+            }
             document.getElementById('modal-description').textContent = project.long_description;
             
-            // Technologies
-            const techContainer = document.getElementById('modal-technologies');
-            techContainer.innerHTML = project.technologies.map(tech => 
-                `<span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-sm">${tech}</span>`
+            // Méta (statut, projet local)
+            const meta = [];
+            if (project.status) meta.push(`<span class="px-3 py-1 rounded-full bg-gray-800 text-gray-300">${project.status}</span>`);
+            if (project.local) meta.push(`<span class="px-3 py-1 rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/40"><i class="fas fa-lock mr-1"></i>Projet local : non publié en ligne</span>`);
+            document.getElementById('modal-meta').innerHTML = meta.join('');
+
+            // Chiffres clés
+            document.getElementById('modal-metrics').innerHTML = (project.metrics || []).map(m =>
+                `<div class="bg-gray-900 rounded-lg p-3 text-center border border-gray-800"><div class="text-xl font-bold text-cyan-400">${m.value}</div><div class="text-xs text-gray-400">${m.label}</div></div>`
             ).join('');
-            
+
+            // Fonctionnalités
+            const features = project.features || [];
+            document.getElementById('modal-features-wrap').classList.toggle('hidden', !features.length);
+            document.getElementById('modal-features').innerHTML = features.map(f =>
+                `<li class="flex gap-2"><i class="fas fa-check text-cyan-400 mt-1 text-xs"></i><span>${f}</span></li>`
+            ).join('');
+
+            // Technologies groupées (sinon liste simple)
+            const stack = project.stack || { 'Stack': project.technologies };
+            document.getElementById('modal-stack').innerHTML = Object.entries(stack).map(([group, items]) =>
+                `<div><div class="text-xs uppercase tracking-wide text-gray-500 mb-1">${group}</div><div class="flex flex-wrap gap-2">` +
+                items.map(i => `<span class="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-sm">${i}</span>`).join('') +
+                `</div></div>`
+            ).join('');
+
             // Links
-            document.getElementById('modal-github').href = project.github || '#';
-            document.getElementById('modal-demo').href = project.demo || '#';
+            const gh = document.getElementById('modal-github');
+            const demo = document.getElementById('modal-demo');
+            gh.href = project.github || '#';
+            demo.href = project.demo || '#';
+            gh.classList.toggle('hidden', !project.github);
+            demo.classList.toggle('hidden', !project.demo);
             
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';

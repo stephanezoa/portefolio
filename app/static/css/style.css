@@ -84,17 +84,17 @@ body {
 }
 
 .card-hover:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(6, 182, 212, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(6, 182, 212, 0.12);
 }
 
 /* ======= GLOW EFFECT ======= */
 .glow {
-    box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+    box-shadow: 0 0 18px rgba(6, 182, 212, 0.28);
 }
 
 .glow:hover {
-    box-shadow: 0 0 30px rgba(6, 182, 212, 0.7);
+    box-shadow: 0 0 24px rgba(6, 182, 212, 0.4);
 }
 
 /* ======= BUTTON PULSE ======= */
@@ -108,7 +108,7 @@ body {
 }
 
 .btn-pulse {
-    animation: pulse 2s ease-in-out infinite;
+    /* animation retirée : effet trop insistant */
 }
 
 /* ======= FLASH MESSAGES ======= */

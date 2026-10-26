@@ -1,22 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}Expérience Professionnelle{% endblock %}
+{% block title %}Parcours & Expérience{% endblock %}
 
 {% block content %}
-<!-- Page Header -->
-<div class="text-center mb-16" data-aos="fade-up">
-    <p class="text-cyan-400 text-sm font-semibold mb-2">💼 Mon Parcours Professionnel</p>
-    <h1 class="text-5xl font-extrabold mb-4">
-        Expérience <span class="gradient-text">Professionnelle</span>
-    </h1>
-    <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-        Plus de 5 ans d'expérience dans le développement Full Stack, la gestion de projets et l'intégration de solutions de paiement pour startups et PME.
-    </p>
-</div>
-
-<!-- Timeline Section -->
-<div class="max-w-4xl mx-auto mb-32">
-    {% set experiences = [
+{% set experiences_raw = [
         {
             'title': 'Développeur Full Stack & Chef de Projet',
             'company': 'HR-SKILLS',
@@ -114,49 +101,145 @@
             'technologies': ['Arduino', 'C/C++', 'Électronique', 'Robotique', 'IoT', 'Pédagogie']
         }
     ] %}
-    
-    {% for exp in experiences %}
-    <div class="relative pl-8 {% if not loop.last %}pb-12 border-l-2 border-gray-800{% endif %}" data-aos="fade-up" data-aos-delay="{{ loop.index0 * 100 }}">
-        <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-{{ exp.color }}-500 to-{{ exp.color }}-600 rounded-full flex items-center justify-center shadow-lg shadow-{{ exp.color }}-500/50">
-            <i class="fas {{ exp.icon }} text-sm text-white"></i>
+{% set experiences = experiences_raw|sort(attribute='period') %}
+
+<!-- ============ HERO : départ du sentier ============ -->
+<section id="exp-hero" class="relative mb-24 overflow-hidden rounded-3xl border border-gray-800 bg-gradient-to-b from-gray-900 to-gray-950 px-6 pb-10 pt-16 text-center md:pt-20">
+    <!-- Fond : grille, halo qui suit la souris, orbes -->
+    <div class="pointer-events-none absolute inset-0 opacity-[0.07]" style="background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%)"></div>
+    <div id="exp-spot" class="pointer-events-none absolute inset-0 opacity-70 transition-opacity duration-500" style="background:radial-gradient(420px circle at var(--mx,50%) var(--my,20%),rgba(34,211,238,.16),transparent 60%)"></div>
+    <div class="exp-orb pointer-events-none absolute -left-16 top-24 h-56 w-56 rounded-full bg-purple-500/15 blur-3xl"></div>
+    <div class="exp-orb exp-orb-2 pointer-events-none absolute -right-10 bottom-10 h-64 w-64 rounded-full bg-cyan-500/15 blur-3xl"></div>
+
+    <!-- Pastilles flottantes -->
+    <span class="exp-float hidden lg:inline-flex" style="left:6%;top:22%;--d:0s"><i class="fas fa-microchip"></i>Arduino</span>
+    <span class="exp-float hidden lg:inline-flex" style="right:7%;top:20%;--d:.8s"><i class="fas fa-mobile-alt"></i>Flutter</span>
+    <span class="exp-float hidden lg:inline-flex" style="left:9%;top:52%;--d:1.4s"><i class="fas fa-credit-card"></i>Mobile Money</span>
+    <span class="exp-float hidden lg:inline-flex" style="right:9%;top:50%;--d:.4s"><i class="fas fa-server"></i>Python · Go</span>
+
+    <div class="relative">
+        <span class="exp-rise mb-6 inline-flex items-center gap-2 rounded-full border border-gray-700 bg-gray-900/70 px-4 py-1.5 text-sm text-gray-300 backdrop-blur" style="--i:0">
+            <span class="relative flex h-2 w-2"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-60"></span><span class="relative inline-flex h-2 w-2 rounded-full bg-cyan-400"></span></span>
+            Mon parcours · 2019 → aujourd'hui
+        </span>
+
+        <h1 class="mx-auto max-w-4xl text-4xl font-extrabold leading-[1.1] tracking-tight md:text-6xl">
+            <span class="exp-mask"><span class="exp-line" style="--i:1">De l'électronique à la <span class="gradient-text">fintech</span>,</span></span>
+            <span class="exp-mask"><span class="exp-line" style="--i:2">un sentier fait de projets</span></span>
+        </h1>
+
+        <p class="exp-rise mx-auto mt-6 max-w-2xl text-lg text-gray-400" style="--i:3">
+            Formateur Arduino, puis développeur et chef de projet : intégration de paiements Mobile Money, applications Flutter, backends Python et Go.
+        </p>
+
+        <!-- Compteurs -->
+        <div class="exp-rise mx-auto mt-9 grid max-w-xl grid-cols-3 divide-x divide-gray-800 rounded-2xl border border-gray-800 bg-gray-950/50 py-4 backdrop-blur" style="--i:4">
+            <div><div class="text-3xl font-bold text-white"><span data-count="{{ experiences|length }}">0</span></div><div class="text-xs text-gray-500">étapes</div></div>
+            <div><div class="text-3xl font-bold text-white"><span data-count="{{ years_active }}">0</span>+</div><div class="text-xs text-gray-500">années de pratique</div></div>
+            <div><div class="text-3xl font-bold text-white"><span data-count="{{ total_projects }}">0</span></div><div class="text-xs text-gray-500">projets réalisés</div></div>
         </div>
-        
-        <div class="bg-card-bg rounded-xl p-8 border border-gray-800 card-hover">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                <div>
-                    <h3 class="text-2xl font-bold mb-2">{{ exp.title }}</h3>
-                    <div class="flex items-center gap-2 text-gray-400 mb-2">
-                        <i class="fas fa-building"></i>
-                        <span class="font-semibold">{{ exp.company }}</span>
-                    </div>
-                </div>
-                <div class="flex items-center gap-2 text-{{ exp.color }}-400 bg-{{ exp.color }}-500/10 px-4 py-2 rounded-lg mt-4 md:mt-0">
-                    <i class="fas fa-calendar"></i>
-                    <span>{{ exp.period }}</span>
-                </div>
-            </div>
-            
-            <div class="space-y-3 text-gray-300">
-                <p class="leading-relaxed">{{ exp.description }}</p>
-                <ul class="space-y-2 ml-4">
-                    {% for responsibility in exp.responsibilities %}
-                    <li class="flex items-start">
-                        <i class="fas fa-check-circle text-{{ exp.color }}-400 mt-1 mr-3"></i>
-                        <span>{{ responsibility }}</span>
+
+        <!-- Mini-carte du parcours -->
+        <div class="exp-rise mx-auto mt-12 max-w-4xl" style="--i:5">
+            <p class="mb-5 text-xs uppercase tracking-widest text-gray-500">Les étapes du sentier</p>
+            <div class="relative">
+                <div class="absolute left-[4%] right-[4%] top-[9px] h-px bg-gray-800"></div>
+                <div class="exp-route absolute left-[4%] right-[4%] top-[9px] h-px bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400"></div>
+                <ol class="relative flex justify-between">
+                    {% for exp in experiences %}
+                    <li class="exp-station flex w-1/6 flex-col items-center" style="--i:{{ loop.index0 }}">
+                        <a href="#step-{{ loop.index }}" class="group flex flex-col items-center">
+                            <span class="mb-2 flex h-[19px] w-[19px] items-center justify-center rounded-full border-2 border-{{ exp.color }}-400 bg-gray-950 transition group-hover:bg-{{ exp.color }}-400"></span>
+                            <span class="text-sm font-semibold text-white">{{ exp.period[:4] }}</span>
+                            <span class="mt-0.5 hidden max-w-[110px] text-[11px] leading-tight text-gray-500 transition group-hover:text-gray-300 md:block">{{ exp.company }}</span>
+                        </a>
                     </li>
                     {% endfor %}
-                </ul>
+                </ol>
             </div>
-            
-            <div class="flex flex-wrap gap-2 mt-6">
+        </div>
+
+        <a href="#trail" class="exp-rise mt-10 inline-flex flex-col items-center gap-2 text-sm text-gray-400 transition hover:text-cyan-400" style="--i:6">
+            Suivre le sentier
+            <span class="flex h-10 w-6 justify-center rounded-full border border-gray-600 pt-2"><span class="h-2 w-1 animate-bounce rounded-full bg-cyan-400"></span></span>
+        </a>
+    </div>
+</section>
+
+<!-- ============ SENTIER ============ -->
+
+
+<section id="trail" class="relative mx-auto mb-32 max-w-5xl">
+    <svg id="trail-svg" class="pointer-events-none absolute inset-0 h-full w-full overflow-visible" aria-hidden="true">
+        <defs>
+            <linearGradient id="trail-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="100%">
+                <stop offset="0%" stop-color="#22d3ee"/><stop offset="55%" stop-color="#a855f7"/><stop offset="100%" stop-color="#ec4899"/>
+            </linearGradient>
+            <filter id="trail-glow"><feGaussianBlur stdDeviation="4"/></filter>
+        </defs>
+        <path id="trail-base" fill="none" stroke="#1f2937" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round"/>
+        <path id="trail-done" fill="none" stroke="url(#trail-grad)" stroke-width="4" stroke-linecap="round"/>
+        <circle id="trail-walker-glow" r="14" fill="#22d3ee" opacity="0.5" filter="url(#trail-glow)"/>
+        <circle id="trail-walker" r="7" fill="#fff" stroke="#22d3ee" stroke-width="3"/>
+    </svg>
+
+    <!-- Départ -->
+    <div class="trail-stop relative mb-14 flex justify-center">
+        <div class="trail-dot z-10 flex h-14 w-14 items-center justify-center rounded-full border-2 border-cyan-400 bg-gray-950 text-cyan-400 shadow-lg shadow-cyan-500/30">
+            <i class="fas fa-flag"></i>
+        </div>
+    </div>
+
+    {% for exp in experiences %}
+    {% set side = 'left' if loop.index is odd else 'right' %}
+    <article id="step-{{ loop.index }}" class="trail-stop relative scroll-mt-24 mb-14 md:mb-20 md:flex {% if side == 'left' %}md:justify-start{% else %}md:justify-end{% endif %}" data-aos="fade-up">
+        <!-- Point sur le sentier -->
+        <div class="trail-dot absolute left-4 top-6 z-10 -ml-5 flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-700 bg-gray-950 text-gray-500 transition-colors duration-500 md:left-1/2 md:-ml-5">
+            <i class="fas {{ exp.icon }} text-sm"></i>
+        </div>
+
+        <div class="ml-14 md:ml-0 md:w-[44%] rounded-2xl border border-gray-800 bg-card-bg p-6 transition-colors duration-300 hover:border-{{ exp.color }}-500/50">
+            <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
+                <span class="rounded-full bg-{{ exp.color }}-500/10 px-3 py-1 text-xs font-semibold text-{{ exp.color }}-400"><i class="far fa-calendar mr-1.5"></i>{{ exp.period }}</span>
+                <span class="text-xs text-gray-500">Étape {{ loop.index }}</span>
+            </div>
+            <h3 class="text-xl font-bold leading-snug">{{ exp.title }}</h3>
+            <p class="mb-3 mt-1 text-sm font-semibold text-gray-400"><i class="fas fa-building mr-1.5"></i>{{ exp.company }}</p>
+            <p class="text-sm leading-relaxed text-gray-300">{{ exp.description }}</p>
+
+            <details class="group mt-4">
+                <summary class="cursor-pointer list-none text-sm font-medium text-{{ exp.color }}-400 hover:underline">
+                    <span class="group-open:hidden">Voir les missions <i class="fas fa-chevron-down ml-1 text-xs"></i></span>
+                    <span class="hidden group-open:inline">Masquer <i class="fas fa-chevron-up ml-1 text-xs"></i></span>
+                </summary>
+                <ul class="mt-3 space-y-2 text-sm text-gray-300">
+                    {% for r in exp.responsibilities %}
+                    <li class="flex items-start"><i class="fas fa-check text-{{ exp.color }}-400 mr-2.5 mt-1 text-xs"></i><span>{{ r }}</span></li>
+                    {% endfor %}
+                </ul>
+            </details>
+
+            <div class="mt-4 flex flex-wrap gap-1.5">
                 {% for tech in exp.technologies %}
-                <span class="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-sm">{{ tech }}</span>
+                <span class="rounded-full bg-gray-800 px-2.5 py-1 text-xs text-gray-300">{{ tech }}</span>
                 {% endfor %}
             </div>
         </div>
-    </div>
+    </article>
     {% endfor %}
-</div>
+
+    <!-- Arrivée -->
+    <div class="trail-stop relative flex flex-col items-center text-center" data-aos="fade-up">
+        <div class="trail-dot z-10 mb-5 flex h-14 w-14 items-center justify-center rounded-full border-2 border-gray-700 bg-gray-950 text-gray-500 transition-colors duration-500">
+            <i class="fas fa-rocket"></i>
+        </div>
+        <h2 class="text-2xl font-bold md:text-3xl">Aujourd'hui : {{ total_projects }} projets, et la suite</h2>
+        <p class="mt-2 max-w-lg text-gray-400">Fintech, mobile, IA et paiement : découvrez ce que ce parcours a produit.</p>
+        <a href="{{ url_for('projects.projects') }}" class="mt-6 inline-flex items-center rounded-xl bg-cyan-500 px-7 py-3 font-medium text-black transition hover:bg-cyan-400">
+            Voir les projets <i class="fas fa-arrow-right ml-2 text-sm"></i>
+        </a>
+    </div>
+</section>
 
 <!-- Education Section -->
 <div class="mb-32">
@@ -203,7 +286,7 @@
     
     <!-- Additional Training -->
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-        <div class="bg-card-bg rounded-xl p-6 border border-gray-800 card-hover" data-aos="zoom-in" data-aos-delay="100">
+        <div class="bg-card-bg rounded-xl p-6 border border-gray-800 card-hover" data-aos="fade-up" data-aos-delay="100">
             <div class="w-14 h-14 bg-cyan-500/20 rounded-full flex items-center justify-center mb-4 mx-auto">
                 <i class="fab fa-flutter text-2xl text-cyan-400"></i>
             </div>
@@ -215,7 +298,7 @@
             </div>
         </div>
         
-        <div class="bg-card-bg rounded-xl p-6 border border-gray-800 card-hover" data-aos="zoom-in" data-aos-delay="200">
+        <div class="bg-card-bg rounded-xl p-6 border border-gray-800 card-hover" data-aos="fade-up" data-aos-delay="200">
             <div class="w-14 h-14 bg-blue-500/20 rounded-full flex items-center justify-center mb-4 mx-auto">
                 <i class="fab fa-python text-2xl text-blue-400"></i>
             </div>
@@ -227,7 +310,7 @@
             </div>
         </div>
         
-        <div class="bg-card-bg rounded-xl p-6 border border-gray-800 card-hover" data-aos="zoom-in" data-aos-delay="300">
+        <div class="bg-card-bg rounded-xl p-6 border border-gray-800 card-hover" data-aos="fade-up" data-aos-delay="300">
             <div class="w-14 h-14 bg-orange-500/20 rounded-full flex items-center justify-center mb-4 mx-auto">
                 <i class="fas fa-server text-2xl text-orange-400"></i>
             </div>
@@ -239,7 +322,7 @@
             </div>
         </div>
         
-        <div class="bg-card-bg rounded-xl p-6 border border-gray-800 card-hover" data-aos="zoom-in" data-aos-delay="400">
+        <div class="bg-card-bg rounded-xl p-6 border border-gray-800 card-hover" data-aos="fade-up" data-aos-delay="400">
             <div class="w-14 h-14 bg-pink-500/20 rounded-full flex items-center justify-center mb-4 mx-auto">
                 <i class="fas fa-chart-bar text-2xl text-pink-400"></i>
             </div>
@@ -273,9 +356,9 @@
         
         {% for skill in skills %}
         <div class="bg-card-bg rounded-xl p-6 text-center card-hover border border-gray-800 group" 
-             data-aos="zoom-in" 
+             data-aos="fade-up" 
              data-aos-delay="{{ loop.index * 100 }}">
-            <div class="w-20 h-20 mx-auto mb-4 bg-{{ skill.color }}-500/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+            <div class="w-20 h-20 mx-auto mb-4 bg-{{ skill.color }}-500/20 rounded-full flex items-center justify-center ">
                 <i class="fab {{ skill.icon }} text-4xl text-{{ skill.color }}-400"></i>
             </div>
             <h4 class="font-semibold text-sm">{{ skill.name }}</h4>
@@ -294,7 +377,7 @@
     </div>
     
     <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-        <div class="bg-card-bg rounded-xl p-8 border border-gray-800 card-hover text-center" data-aos="zoom-in">
+        <div class="bg-card-bg rounded-xl p-8 border border-gray-800 card-hover text-center" data-aos="fade-up">
             <div class="w-20 h-20 mx-auto mb-4 bg-cyan-500/20 rounded-full flex items-center justify-center">
                 <i class="fas fa-flag text-4xl text-cyan-400"></i>
             </div>
@@ -309,7 +392,7 @@
             </div>
         </div>
         
-        <div class="bg-card-bg rounded-xl p-8 border border-gray-800 card-hover text-center" data-aos="zoom-in" data-aos-delay="100">
+        <div class="bg-card-bg rounded-xl p-8 border border-gray-800 card-hover text-center" data-aos="fade-up" data-aos-delay="100">
             <div class="w-20 h-20 mx-auto mb-4 bg-blue-500/20 rounded-full flex items-center justify-center">
                 <i class="fas fa-flag text-4xl text-blue-400"></i>
             </div>
@@ -328,7 +411,7 @@
 
 <!-- CTA Section -->
 <div class="bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-2xl p-12 text-center border border-cyan-500/20" 
-     data-aos="zoom-in">
+     data-aos="fade-up">
     <p class="text-cyan-400 text-sm font-semibold mb-2">💬 Témoignages Clients</p>
     <h2 class="text-4xl font-bold mb-4">Qu'en Disent Mes Clients ?</h2>
     <p class="text-xl text-gray-300 mb-8">
@@ -339,4 +422,119 @@
         Lire les Témoignages <i class="fas fa-arrow-right ml-2"></i>
     </a>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<style>
+    .trail-dot.reached { border-color: #22d3ee; color: #22d3ee; box-shadow: 0 0 18px rgba(34, 211, 238, .35); }
+
+    /* ---- Hero : entrées en cascade ---- */
+    .exp-rise { opacity: 0; transform: translateY(16px); animation: expRise .7s cubic-bezier(.2,.7,.2,1) forwards; animation-delay: calc(var(--i, 0) * 110ms + 100ms); }
+    .exp-mask { display: block; overflow: hidden; padding-bottom: .12em; }
+    .exp-line { display: block; transform: translateY(110%); animation: expLine .9s cubic-bezier(.2,.7,.2,1) forwards; animation-delay: calc(var(--i, 0) * 140ms); }
+    @keyframes expRise { to { opacity: 1; transform: none; } }
+    @keyframes expLine { to { transform: none; } }
+
+    /* ---- Mini-carte : tracé + stations ---- */
+    .exp-route { transform-origin: left; transform: scaleX(0); animation: expRoute 1.8s cubic-bezier(.4,0,.2,1) .9s forwards; }
+    @keyframes expRoute { to { transform: scaleX(1); } }
+    .exp-station { opacity: 0; transform: translateY(8px); animation: expRise .6s ease forwards; animation-delay: calc(var(--i) * 260ms + 1000ms); }
+
+    /* ---- Fond animé ---- */
+    .exp-orb { animation: expDrift 14s ease-in-out infinite alternate; }
+    .exp-orb-2 { animation-duration: 18s; animation-direction: alternate-reverse; }
+    @keyframes expDrift { from { transform: translate(0, 0); } to { transform: translate(24px, -18px); } }
+
+    .exp-float { position: absolute; align-items: center; gap: .5rem; padding: .4rem .9rem; font-size: .8rem; color: #cbd5e1;
+        border: 1px solid rgba(148,163,184,.25); border-radius: 9999px; background: rgba(15,23,42,.6); backdrop-filter: blur(6px);
+        animation: expFloat 6s ease-in-out infinite; animation-delay: var(--d, 0s); }
+    .exp-float i { color: #22d3ee; }
+    @keyframes expFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+    /* ---- Sentier : apparition douce des cartes ---- */
+    #trail article > div:last-child { transition: border-color .3s, transform .3s; }
+
+    @media (prefers-reduced-motion: reduce) {
+        .exp-rise, .exp-line, .exp-station, .exp-route { animation: none; opacity: 1; transform: none; }
+        .exp-orb, .exp-float { animation: none; }
+    }
+</style>
+<script>
+(function () {
+    // Compteurs animés
+    document.querySelectorAll('[data-count]').forEach(el => {
+        const target = parseInt(el.dataset.count, 10) || 0;
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) { el.textContent = target; return; }
+        const start = performance.now() + 700, dur = 1400;
+        (function step(now) {
+            const p = Math.max(0, Math.min(1, (now - start) / dur));
+            el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+            if (p < 1) requestAnimationFrame(step);
+        })(performance.now());
+    });
+
+    // Halo qui suit la souris dans le hero
+    const hero = document.getElementById('exp-hero');
+    if (hero) {
+        hero.addEventListener('mousemove', e => {
+            const r = hero.getBoundingClientRect();
+            hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+            hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
+        });
+    }
+})();
+</script>
+<script>
+(function () {
+    const wrap = document.getElementById('trail');
+    if (!wrap) return;
+    const base = document.getElementById('trail-base');
+    const done = document.getElementById('trail-done');
+    const walker = document.getElementById('trail-walker');
+    const glow = document.getElementById('trail-walker-glow');
+    const dots = [...wrap.querySelectorAll('.trail-dot')];
+    let total = 0, pts = [];
+
+    function build() {
+        const wr = wrap.getBoundingClientRect();
+        pts = dots.map(d => {
+            const r = d.getBoundingClientRect();
+            return { x: r.left - wr.left + r.width / 2, y: r.top - wr.top + r.height / 2 };
+        });
+        let d = 'M ' + pts[0].x + ' ' + pts[0].y;
+        for (let i = 1; i < pts.length; i++) {
+            const a = pts[i - 1], b = pts[i], my = (a.y + b.y) / 2;
+            d += ' C ' + a.x + ' ' + my + ', ' + b.x + ' ' + my + ', ' + b.x + ' ' + b.y;
+        }
+        base.setAttribute('d', d);
+        done.setAttribute('d', d);
+        total = done.getTotalLength();
+        done.style.strokeDasharray = total;
+        update();
+    }
+
+    function update() {
+        if (!total) return;
+        const wr = wrap.getBoundingClientRect();
+        const probe = window.innerHeight * 0.55;
+        const target = probe - wr.top;
+        const first = pts[0].y, last = pts[pts.length - 1].y;
+        const p = Math.max(0, Math.min(1, (target - first) / (last - first)));
+        const len = total * p;
+        done.style.strokeDashoffset = total - len;
+        const pt = done.getPointAtLength(len);
+        walker.setAttribute('cx', pt.x); walker.setAttribute('cy', pt.y);
+        glow.setAttribute('cx', pt.x); glow.setAttribute('cy', pt.y);
+        dots.forEach((d, i) => d.classList.toggle('reached', pts[i].y <= target + 4));
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', build);
+    window.addEventListener('load', build);
+    document.querySelectorAll('#trail details').forEach(el => el.addEventListener('toggle', () => setTimeout(build, 50)));
+    setTimeout(build, 400);
+    build();
+})();
+</script>
 {% endblock %}

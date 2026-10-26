@@ -1,0 +1,18 @@
+[
+  {
+    "id": "evenement-1",
+    "title": "Titre de votre événement",
+    "category": "Conférence",
+    "date": "2026-03-14",
+    "location": "Douala, Cameroun",
+    "description": "Décrivez ici l'événement : votre rôle, le sujet présenté, ce que vous en avez retiré."
+  },
+  {
+    "id": "evenement-2",
+    "title": "Hackathon / Meetup / Formation",
+    "category": "Hackathon",
+    "date": "2025-11-02",
+    "location": "Yaoundé, Cameroun",
+    "description": "Une courte histoire de l'événement et de ce que vous y avez construit."
+  }
+]

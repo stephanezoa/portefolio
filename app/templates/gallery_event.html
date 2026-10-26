@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}{{ event.title }} — Gallery{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <a href="{{ url_for('main.gallery') }}" class="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-cyan-400 transition mb-6">
+        <i class="fas fa-arrow-left"></i> Tous les événements
+    </a>
+
+    <header class="mb-10 max-w-3xl">
+        <div class="flex flex-wrap items-center gap-3 mb-3 text-sm">
+            <span class="px-3 py-1 rounded-full bg-purple-500/15 text-purple-300 font-semibold">{{ event.category }}</span>
+            <span class="text-gray-400"><i class="far fa-calendar mr-1"></i>{{ event.date_obj.strftime('%d/%m/%Y') }}</span>
+            {% if event.location %}<span class="text-gray-400"><i class="fas fa-map-marker-alt mr-1"></i>{{ event.location }}</span>{% endif %}
+            <span class="text-gray-400"><i class="far fa-image mr-1"></i>{{ event.photos|length }} photos</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-4">{{ event.title }}</h1>
+        <p class="text-lg text-gray-400">{{ event.description }}</p>
+    </header>
+
+    {% if event.photos %}
+    <div class="columns-2 md:columns-3 lg:columns-4 gap-3">
+        {% for photo in event.photos %}
+        <figure class="photo-item hidden mb-3 break-inside-avoid overflow-hidden rounded-lg bg-card-bg cursor-zoom-in group"
+                data-src="{{ url_for('static', filename='images/gallery/' + photo) }}">
+            <img src="{{ url_for('static', filename='images/gallery/' + photo) }}" alt="{{ event.title }} — photo {{ loop.index }}"
+                 loading="lazy" decoding="async"
+                 class="w-full h-auto block transition duration-500 group-hover:scale-105 group-hover:brightness-110">
+        </figure>
+        {% endfor %}
+    </div>
+    <div class="text-center mt-10">
+        <button id="load-more" class="px-6 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-cyan-500 to-purple-500 hover:opacity-90 transition"></button>
+    </div>
+    {% else %}
+    <div class="rounded-xl border border-dashed border-gray-700 bg-card-bg p-16 text-center text-gray-500">
+        <i class="far fa-images text-4xl mb-3"></i>
+        <p>Photos à venir</p>
+    </div>
+    {% endif %}
+
+    <!-- Prev / next event -->
+    <nav class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-20 mb-24">
+        {% if newer %}
+        <a href="{{ url_for('main.gallery_event', event_id=newer.id) }}" class="p-5 rounded-xl bg-card-bg border border-gray-800 hover:border-cyan-500/60 transition">
+            <p class="text-xs text-gray-500 mb-1">← Plus récent</p><p class="font-bold">{{ newer.title }}</p>
+        </a>{% else %}<span></span>{% endif %}
+        {% if older %}
+        <a href="{{ url_for('main.gallery_event', event_id=older.id) }}" class="p-5 rounded-xl bg-card-bg border border-gray-800 hover:border-cyan-500/60 transition sm:text-right">
+            <p class="text-xs text-gray-500 mb-1">Plus ancien →</p><p class="font-bold">{{ older.title }}</p>
+        </a>{% endif %}
+    </nav>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox" class="fixed inset-0 z-[100] hidden bg-black/95 items-center justify-center p-4">
+    <button id="lb-close" class="absolute top-4 right-5 text-4xl text-white hover:text-cyan-400" aria-label="Fermer">&times;</button>
+    <button id="lb-prev" class="absolute left-3 md:left-8 text-5xl text-white hover:text-cyan-400" aria-label="Précédent">&#8249;</button>
+    <button id="lb-next" class="absolute right-3 md:right-8 text-5xl text-white hover:text-cyan-400" aria-label="Suivant">&#8250;</button>
+    <img id="lb-img" src="" alt="" class="max-h-[88vh] max-w-full rounded-lg">
+    <span id="lb-count" class="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm text-gray-300"></span>
+</div>
+<style>#lightbox.open { display: flex; }</style>
+<script src="{{ url_for('static', filename='js/gallery.js') }}"></script>
+{% endblock %}

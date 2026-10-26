@@ -35,6 +35,7 @@
                         name="name" 
                         required
                         minlength="2"
+                        maxlength="100"
                         placeholder="John Doe"
                         class="w-full pl-12 pr-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition"
                     >
@@ -55,6 +56,7 @@
                         id="email" 
                         name="email" 
                         required
+                        maxlength="254"
                         placeholder="john@example.com"
                         class="w-full pl-12 pr-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition"
                     >
@@ -75,10 +77,15 @@
                         name="message" 
                         required
                         minlength="10"
+                        maxlength="5000"
                         rows="6"
                         placeholder="Tell me about your project..."
                         class="w-full pl-12 pr-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition resize-none"
                     ></textarea>
+                </div>
+                <div class="text-right mt-1">
+                    <span id="char-count" class="text-xs text-gray-500">0</span>
+                    <span class="text-xs text-gray-500"> / 5000</span>
                 </div>
             </div>
 
@@ -133,10 +140,10 @@
                 <div>
                     <h3 class="text-lg font-bold mb-2">Email Direct</h3>
                     <a 
-                        href="mailto:djembar.arafat@example.com"
+                        href="mailto:contact@stephanezoa.online"
                         class="text-cyan-400 hover:text-cyan-300 transition flex items-center group"
                     >
-                        <span>djembar.arafat@example.com</span>
+                        <span>contact@stephanezoa.online</span>
                         <i class="fas fa-arrow-right ml-2 text-sm group-hover:translate-x-1 transition-transform"></i>
                     </a>
                 </div>
@@ -295,4 +302,33 @@
         </a>
     </div>
 </div>
+
+<!-- EmailJS SDK -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<!-- Script de gestion du formulaire avec EmailJS -->
+<script src="{{ url_for('static', filename='js/contact-emailjs.js') }}"></script>
+
+<!-- Compteur de caractères -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const messageField = document.getElementById('message');
+    const charCount = document.getElementById('char-count');
+    
+    if (messageField && charCount) {
+        messageField.addEventListener('input', function() {
+            charCount.textContent = this.value.length;
+            
+            // Changer la couleur en fonction du nombre de caractères
+            if (this.value.length > 4500) {
+                charCount.style.color = '#ef4444'; // Rouge
+            } else if (this.value.length > 4000) {
+                charCount.style.color = '#f59e0b'; // Orange
+            } else {
+                charCount.style.color = '#6b7280'; // Gris
+            }
+        });
+    }
+});
+</script>
 {% endblock %}

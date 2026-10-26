@@ -1,4 +1,8 @@
+from dotenv import load_dotenv
 from flask import Flask
+
+load_dotenv()
+
 from app.config import Config
 
 def create_app(config_class=Config):

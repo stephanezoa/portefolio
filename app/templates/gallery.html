@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Gallery — Events & Moments{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto">
+    <!-- Header -->
+    <header class="mb-10" data-aos="fade-up">
+        <p class="text-cyan-400 text-sm font-semibold mb-2">📸 Photothèque</p>
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-3">Events &amp; <span class="gradient-text">Moments</span></h1>
+        <p class="text-lg text-gray-400 max-w-2xl">
+            {{ events|length }} événements · {{ total_photos }} photos. Choisissez un événement pour voir toutes les photos.
+        </p>
+    </header>
+
+    <!-- Filters (sticky) -->
+    <div class="sticky top-16 z-30 -mx-4 px-4 py-3 mb-8 bg-black/80 backdrop-blur border-b border-gray-800">
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <div class="flex flex-wrap gap-2">
+                <button class="gallery-filter active" data-group="category" data-value="all">Tous</button>
+                {% for c in categories %}<button class="gallery-filter" data-group="category" data-value="{{ c }}">{{ c }}</button>{% endfor %}
+            </div>
+            {% if years|length > 1 %}
+            <div class="flex flex-wrap gap-2 md:ml-auto">
+                <button class="gallery-filter active" data-group="year" data-value="all">Toutes les années</button>
+                {% for y in years %}<button class="gallery-filter" data-group="year" data-value="{{ y }}">{{ y }}</button>{% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Event cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
+        {% for event in events %}
+        <a href="{{ url_for('main.gallery_event', event_id=event.id) }}"
+           class="event-card group block rounded-2xl overflow-hidden bg-card-bg border border-gray-800 hover:border-cyan-500/60 transition"
+           data-category="{{ event.category }}" data-year="{{ event.date_obj.year }}">
+            <div class="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-cyan-500/20 to-purple-500/20">
+                {% if event.cover_photo %}
+                <img src="{{ url_for('static', filename='images/gallery/' + event.cover_photo) }}" alt="{{ event.title }}" loading="lazy"
+                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                {% else %}
+                <div class="w-full h-full flex items-center justify-center text-gray-500"><i class="far fa-images text-4xl"></i></div>
+                {% endif %}
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur text-xs font-semibold text-white">{{ event.category }}</span>
+                <span class="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur text-xs text-white"><i class="far fa-image mr-1"></i>{{ event.photos|length }}</span>
+            </div>
+            <div class="p-5">
+                <h2 class="text-xl font-bold mb-1 group-hover:text-cyan-400 transition">{{ event.title }}</h2>
+                <p class="text-sm text-gray-400">
+                    {{ event.date_obj.strftime('%d/%m/%Y') }}{% if event.location %} · {{ event.location }}{% endif %}
+                </p>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    <p id="gallery-empty" class="hidden text-center text-gray-500 py-16">Aucun événement pour ce filtre.</p>
+</div>
+
+<style>
+    .gallery-filter { padding: .4rem 1rem; border-radius: 9999px; font-size: .875rem; font-weight: 600; color: #9ca3af; border: 1px solid #374151; transition: .2s; }
+    .gallery-filter:hover { color: #22d3ee; border-color: #22d3ee; }
+    .gallery-filter.active { color: #fff; border-color: transparent; background: linear-gradient(135deg, #06b6d4, #8b5cf6); }
+</style>
+<script src="{{ url_for('static', filename='js/gallery.js') }}"></script>
+{% endblock %}

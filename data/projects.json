@@ -1,0 +1,2004 @@
+[
+  {
+    "id": 1,
+    "title": "Père Nkap",
+    "subtitle": "Services numériques & utilitaires du quotidien",
+    "description": "Super-app fintech camerounaise : Mobile Money (swap MTN ↔ Orange), recharges, forfaits Camtel, électricité ENEO, cartes virtuelles, épargne et billetterie.",
+    "long_description": "Père Nkap centralise les services financiers du quotidien au Cameroun et en zone CEMAC. L'application Flutter couvre le portefeuille (dépôt, retrait, transfert), l'interopérabilité Orange Money ↔ MTN MoMo, le paiement de factures via Smobilpay/Maviance, les cartes virtuelles avec KYC, l'épargne, les billets d'événements nominatifs en PDF et le parrainage. Le backend FastAPI (PostgreSQL, Redis, workers Celery) traite les opérations Mobile Money en arrière-plan ; un site vitrine avec chatbot IA Gemini et une API KYC dédiée complètent l'écosystème.",
+    "image": "projects/perenkap.png",
+    "technologies": [
+      "Flutter",
+      "Dart",
+      "go_router",
+      "Provider",
+      "Hive",
+      "Dio",
+      "Biométrie (local_auth)",
+      "flutter_secure_storage",
+      "KYC",
+      "Python",
+      "FastAPI 0.115",
+      "Uvicorn",
+      "SQLAlchemy 2 (async)",
+      "asyncpg",
+      "Alembic",
+      "Pydantic 2",
+      "PostgreSQL",
+      "Redis (broker)",
+      "Celery 5.5",
+      "Workers MoMo / Orange Money / Swap",
+      "JWT + refresh token",
+      "OTP (pyotp)",
+      "bcrypt",
+      "slowapi (rate limiting)",
+      "MTN MoMo",
+      "Orange Money",
+      "Afrikpay (airtime, ENEO)",
+      "Smobilpay / Maviance",
+      "Stripe",
+      "Firebase Cloud Messaging",
+      "OneSignal",
+      "SMS",
+      "FastAPI",
+      "Supabase / PostgreSQL",
+      "Dramatiq + Redis",
+      "ClamAV",
+      "Gemini (chatbot)",
+      "GitHub Actions",
+      "SSH",
+      "systemd",
+      "Serveur OVH"
+    ],
+    "stack": {
+      "Application mobile (Flutter)": [
+        "Flutter",
+        "Dart",
+        "go_router",
+        "Provider",
+        "Hive",
+        "Dio"
+      ],
+      "Sécurité mobile": [
+        "Biométrie (local_auth)",
+        "flutter_secure_storage",
+        "KYC"
+      ],
+      "Backend API": [
+        "Python",
+        "FastAPI 0.115",
+        "Uvicorn",
+        "SQLAlchemy 2 (async)",
+        "asyncpg",
+        "Alembic",
+        "Pydantic 2"
+      ],
+      "Base de données, cache & jobs": [
+        "PostgreSQL",
+        "Redis (broker)",
+        "Celery 5.5",
+        "Workers MoMo / Orange Money / Swap"
+      ],
+      "Authentification": [
+        "JWT + refresh token",
+        "OTP (pyotp)",
+        "bcrypt",
+        "slowapi (rate limiting)"
+      ],
+      "Paiements & opérateurs": [
+        "MTN MoMo",
+        "Orange Money",
+        "Afrikpay (airtime, ENEO)",
+        "Smobilpay / Maviance",
+        "Stripe"
+      ],
+      "Notifications": [
+        "Firebase Cloud Messaging",
+        "OneSignal",
+        "SMS"
+      ],
+      "KYC & vitrine": [
+        "FastAPI",
+        "Supabase / PostgreSQL",
+        "Dramatiq + Redis",
+        "ClamAV",
+        "Gemini (chatbot)"
+      ],
+      "Déploiement": [
+        "GitHub Actions",
+        "SSH",
+        "systemd",
+        "Serveur OVH"
+      ]
+    },
+    "features": [
+      "Swap Orange Money ↔ MTN MoMo, dépôt, retrait et transfert",
+      "Recharge airtime, forfaits Camtel Blue, tokens ENEO prépayés",
+      "Paiement de factures (Smobilpay / Maviance), Canal+",
+      "Cartes virtuelles : création, financement, retrait, PIN, KYC carte",
+      "Épargne, ordres programmés, parrainage, offre premium",
+      "Billets d'événements nominatifs avec PDF et QR code",
+      "Tontine et cartes virtuelles côté API",
+      "Liens de paiement et paiement par QR code",
+      "Vérification KYC avec scan antivirus des documents"
+    ],
+    "metrics": [
+      {
+        "value": "362",
+        "label": "fichiers Dart"
+      },
+      {
+        "value": "139",
+        "label": "écrans principaux"
+      },
+      {
+        "value": "79",
+        "label": "routes API"
+      },
+      {
+        "value": "30",
+        "label": "fichiers de modèles"
+      }
+    ],
+    "category": "Fintech",
+    "github": "",
+    "demo": "https://perenkap.com",
+    "featured": true,
+    "color": "green",
+    "status": "En production",
+    "icon": "fa-wallet",
+    "local": false
+  },
+  {
+    "id": 2,
+    "title": "Mboa News",
+    "subtitle": "Saisir les opportunités au Cameroun",
+    "description": "Agrégateur d'emplois, stages, bourses, concours et formations au Cameroun, alimenté par plus de 300 sources scrappées automatiquement.",
+    "long_description": "Mboa News collecte, vérifie et publie les opportunités professionnelles du Cameroun avec alertes en temps réel. Un pipeline Python scrape les sites officiels (OCR et PDF compris), publie en RabbitMQ vers un cœur Go, puis indexe dans PostgreSQL et Meilisearch. Les fiches sont publiées automatiquement si la confiance atteint 0,90, sinon mises en quarantaine pour revue. Site web, console d'administration, applications mobiles et API développeurs.",
+    "image": "projects/mboa-news.png",
+    "technologies": [
+      "Go 1.25",
+      "PostgreSQL",
+      "RabbitMQ",
+      "Redis",
+      "Meilisearch",
+      "Python 3.12",
+      "Scrapling",
+      "Playwright",
+      "PyMuPDF",
+      "Tesseract OCR",
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Flutter",
+      "Firebase Messaging",
+      "Design system partagé",
+      "HR-Skills Pay (facturation)",
+      "Meta Graph API"
+    ],
+    "stack": {
+      "Backend": [
+        "Go 1.25",
+        "PostgreSQL",
+        "RabbitMQ",
+        "Redis",
+        "Meilisearch"
+      ],
+      "Collecte": [
+        "Python 3.12",
+        "Scrapling",
+        "Playwright",
+        "PyMuPDF",
+        "Tesseract OCR"
+      ],
+      "Web & Admin": [
+        "Next.js 16",
+        "React 19",
+        "TypeScript"
+      ],
+      "Mobile": [
+        "Flutter",
+        "Firebase Messaging",
+        "Design system partagé"
+      ],
+      "Intégrations": [
+        "HR-Skills Pay (facturation)",
+        "Meta Graph API"
+      ]
+    },
+    "features": [
+      "Collecte automatique avec score de confiance et quarantaine",
+      "Emplois, stages, bourses, concours, formations, événements",
+      "Alertes personnalisées, candidatures et agenda",
+      "Plans premium (jour, semaine, mois, an) et parrainage",
+      "Console admin : sources, collecte, finances, remboursements, signalements",
+      "API développeurs avec clés et documentation OpenAPI",
+      "Newsletter et publication sur les réseaux sociaux"
+    ],
+    "metrics": [
+      {
+        "value": "309",
+        "label": "sources scrapées"
+      },
+      {
+        "value": "36",
+        "label": "migrations SQL"
+      },
+      {
+        "value": "45",
+        "label": "endpoints OpenAPI"
+      },
+      {
+        "value": "490+",
+        "label": "fichiers de tests"
+      }
+    ],
+    "category": "Web App",
+    "github": "",
+    "demo": "https://mboanews.site",
+    "featured": true,
+    "color": "cyan",
+    "status": "En production",
+    "icon": "fa-newspaper",
+    "local": false
+  },
+  {
+    "id": 3,
+    "title": "TOURISM237",
+    "subtitle": "Africa in miniature at your fingertips",
+    "description": "Plateforme SaaS de tourisme camerounais avec l'agent IA Kimi, réservations, guides, billetterie et immersion culturelle 3D.",
+    "long_description": "TOURISM237 connecte touristes et prestataires (hôtels, véhicules, guides, sites culturels) autour de 5 rôles. Kimi, assistant IA omniprésent, utilise Gemini avec repli Groq, planifie des voyages chiffrés sur plusieurs jours et interroge Google Hotels en temps réel. Le paiement passe par HR-Skills Pay (Mobile Money et cartes) et les pages culturelles 3D présentent les régions du Cameroun.",
+    "image": "projects/tourism237.png",
+    "technologies": [
+      "Laravel 12",
+      "PHP 8.2",
+      "Livewire Flux",
+      "Volt",
+      "SQLite / MySQL",
+      "Blade",
+      "Vite",
+      "Bootstrap",
+      "GSAP",
+      "Three.js",
+      "Gemini",
+      "Groq",
+      "SerpApi Google Hotels",
+      "ElevenLabs",
+      "Leaflet",
+      "Valhalla",
+      "Pest 4",
+      "Playwright"
+    ],
+    "stack": {
+      "Backend": [
+        "Laravel 12",
+        "PHP 8.2",
+        "Livewire Flux",
+        "Volt",
+        "SQLite / MySQL"
+      ],
+      "Frontend": [
+        "Blade",
+        "Vite",
+        "Bootstrap",
+        "GSAP",
+        "Three.js"
+      ],
+      "IA": [
+        "Gemini",
+        "Groq",
+        "SerpApi Google Hotels",
+        "ElevenLabs"
+      ],
+      "Carte & GPS": [
+        "Leaflet",
+        "Valhalla"
+      ],
+      "Qualité": [
+        "Pest 4",
+        "Playwright"
+      ]
+    },
+    "features": [
+      "Agent IA Kimi : itinéraires chiffrés multi-jours, voix",
+      "Réservation d'hôtels et de véhicules, guides professionnels",
+      "Panier unifié, abonnements, codes promo, commissions",
+      "Paiement Mobile Money et cartes via HR-Skills Pay",
+      "KYC prestataires et guides, fidélité, annulations",
+      "Suivi GPS et billetterie électronique",
+      "Pages culturelles 3D par région (forêt, savane, sahel, littoral)",
+      "5 rôles : touriste, prestataire, guide, gestionnaire, admin"
+    ],
+    "metrics": [
+      {
+        "value": "44",
+        "label": "modèles"
+      },
+      {
+        "value": "84",
+        "label": "migrations"
+      },
+      {
+        "value": "254",
+        "label": "vues Blade"
+      },
+      {
+        "value": "334",
+        "label": "tests Pest"
+      }
+    ],
+    "category": "Web App",
+    "github": "",
+    "demo": "https://tourism237.online",
+    "featured": true,
+    "color": "orange",
+    "status": "En production",
+    "icon": "fa-mountain-sun",
+    "local": false
+  },
+  {
+    "id": 4,
+    "title": "SaamayaPOS",
+    "subtitle": "Gestion commerciale 360° pour l'Afrique Centrale",
+    "description": "Caisse, stock, marketplace, logistique et comptabilité OHADA pour les commerçants, avec paiements SaamayaPay GIMAC.",
+    "long_description": "SaamayaPOS est la plateforme de gestion commerciale de Saamaya Finance : vitrines marchandes, catalogue, commandes, stocks multi-dépôts, clients, finance et rapports, plus une marketplace publique et une API pour l'application mobile marchande Flutter. Les paiements sont centralisés par SaamayaPay.",
+    "image": "projects/saamayapos.png",
+    "technologies": [
+      "Node.js",
+      "Fastify 5",
+      "Express (compat)",
+      "better-sqlite3",
+      "Zod",
+      "JWT",
+      "React 19",
+      "Vite",
+      "Tailwind 4",
+      "TanStack Query",
+      "Recharts",
+      "pdfkit",
+      "jsPDF",
+      "xlsx",
+      "sharp",
+      "Swagger / OpenAPI",
+      "Jest",
+      "Flutter (application marchand)"
+    ],
+    "stack": {
+      "Backend": [
+        "Node.js",
+        "Fastify 5",
+        "Express (compat)",
+        "better-sqlite3",
+        "Zod",
+        "JWT"
+      ],
+      "Frontend": [
+        "React 19",
+        "Vite",
+        "Tailwind 4",
+        "TanStack Query",
+        "Recharts"
+      ],
+      "Documents": [
+        "pdfkit",
+        "jsPDF",
+        "xlsx",
+        "sharp"
+      ],
+      "API": [
+        "Swagger / OpenAPI",
+        "Jest"
+      ],
+      "Mobile": [
+        "Flutter (application marchand)"
+      ]
+    },
+    "features": [
+      "Vitrines marchandes, catalogue et commandes",
+      "Stock multi-dépôts, clients, personnel",
+      "Marketplace publique avec recherche",
+      "Finance, rapports, exports PDF et Excel",
+      "5 surfaces d'API : marchand, public, mobile, admin, webhooks",
+      "Paiements via SaamayaPay (GIMAC, Mobile Money)"
+    ],
+    "metrics": [
+      {
+        "value": "25",
+        "label": "modules backend"
+      },
+      {
+        "value": "69",
+        "label": "composants JSX"
+      },
+      {
+        "value": "5",
+        "label": "surfaces d'API"
+      },
+      {
+        "value": "v2.0",
+        "label": "backend"
+      }
+    ],
+    "category": "Web App",
+    "github": "",
+    "demo": "https://saamayapos.com",
+    "featured": true,
+    "color": "blue",
+    "status": "En production",
+    "icon": "fa-cash-register",
+    "local": false
+  },
+  {
+    "id": 5,
+    "title": "SaamayaPay",
+    "subtitle": "Plateforme de paiement GIMAC & Mobile Money",
+    "description": "Passerelle de paiement de Saamaya Finance : encaissement marchands, wallets, payouts, liens de paiement et connexion GIMAC.",
+    "long_description": "SaamayaPay est le socle de paiement de l'écosystème Saamaya (SaamayaPOS, OCity, QuickServe). Il expose une API v1 authentifiée par clé ou JWT, gère wallets, paiements, payouts, liens de paiement, KYC, onboarding, réconciliation et scoring, et se connecte à GIMAC et au Mobile Money MTN. Interfaces marchand, agent et admin, plus des simulateurs GIMAC / MoMo / USSD pour les tests.",
+    "image": "projects/saamayapay.png",
+    "technologies": [
+      "Node.js",
+      "Express 4",
+      "Prisma 5",
+      "PostgreSQL",
+      "BullMQ",
+      "Redis",
+      "React 18",
+      "Vite",
+      "Tailwind",
+      "React Query",
+      "Recharts",
+      "Framer Motion",
+      "Sentry",
+      "Helmet",
+      "GIMAC",
+      "MTN MoMo",
+      "USSD"
+    ],
+    "stack": {
+      "Backend": [
+        "Node.js",
+        "Express 4",
+        "Prisma 5",
+        "PostgreSQL",
+        "BullMQ",
+        "Redis"
+      ],
+      "Frontend": [
+        "React 18",
+        "Vite",
+        "Tailwind",
+        "React Query",
+        "Recharts",
+        "Framer Motion"
+      ],
+      "Observabilité & sécurité": [
+        "Sentry",
+        "Helmet"
+      ],
+      "Intégrations": [
+        "GIMAC",
+        "MTN MoMo",
+        "USSD"
+      ]
+    },
+    "features": [
+      "Paiements, wallets, payouts et liens de paiement",
+      "Réconciliation, scoring, KYC et onboarding",
+      "Espaces marchand, agent et admin",
+      "Simulateurs GIMAC, MoMo et USSD",
+      "API v1 documentée, authentification par clé ou JWT"
+    ],
+    "metrics": [
+      {
+        "value": "44",
+        "label": "modèles Prisma"
+      },
+      {
+        "value": "51",
+        "label": "composants JSX"
+      },
+      {
+        "value": "11",
+        "label": "fichiers de tests"
+      }
+    ],
+    "category": "Fintech",
+    "github": "",
+    "demo": "https://saamayapay.com",
+    "featured": true,
+    "color": "green",
+    "status": "En production",
+    "icon": "fa-credit-card",
+    "local": false
+  },
+  {
+    "id": 6,
+    "title": "HR-Skills Pay",
+    "subtitle": "Infrastructure de paiement B2B pour l'Afrique",
+    "description": "API REST de paiement B2B : Mobile Money multi-opérateurs, KYC/KYB, wallets multi-devises et reporting temps réel.",
+    "long_description": "HR-Skills Pay est une passerelle de paiement pour entreprises formelles en zone XAF. Le backend Go démarre un seul binaire qui orchestre six services internes : API gateway, identité, configuration marchands, orchestrateur de paiements, connecteurs opérateurs et reporting. RabbitMQ porte les événements, callbacks et retries, Redis l'idempotence et le rate limiting. Des SDK dans six langages et un plugin WooCommerce facilitent l'intégration.",
+    "image": "projects/hr-skills-pay.png",
+    "technologies": [
+      "Go 1.26",
+      "Fiber 2.52",
+      "GORM",
+      "PostgreSQL",
+      "RabbitMQ",
+      "Redis",
+      "JWT",
+      "gobreaker",
+      "Prometheus",
+      "zap",
+      "Maviance / Smobilpay",
+      "Cartevo",
+      "MTN MoMo",
+      "Orange Money",
+      "Go",
+      "Java",
+      "JavaScript",
+      "PHP",
+      "Python",
+      "Rust",
+      "WooCommerce",
+      "Docker",
+      "Makefile"
+    ],
+    "stack": {
+      "Backend": [
+        "Go 1.26",
+        "Fiber 2.52",
+        "GORM",
+        "PostgreSQL"
+      ],
+      "Messagerie & cache": [
+        "RabbitMQ",
+        "Redis"
+      ],
+      "Fiabilité": [
+        "JWT",
+        "gobreaker",
+        "Prometheus",
+        "zap"
+      ],
+      "Intégrations": [
+        "Maviance / Smobilpay",
+        "Cartevo",
+        "MTN MoMo",
+        "Orange Money"
+      ],
+      "SDK": [
+        "Go",
+        "Java",
+        "JavaScript",
+        "PHP",
+        "Python",
+        "Rust",
+        "WooCommerce"
+      ],
+      "Déploiement": [
+        "Docker",
+        "Makefile"
+      ]
+    },
+    "features": [
+      "Initiation et remboursement de paiements avec Idempotency-Key",
+      "Inscription marchand, 2FA, KYC freelance et entreprise",
+      "Wallets multi-devises et mouvements",
+      "AML / back-office admin et reporting",
+      "Callbacks, webhooks, retries et dead-letter",
+      "Documentation API marchand et SDK multi-langages"
+    ],
+    "metrics": [
+      {
+        "value": "6",
+        "label": "services internes"
+      },
+      {
+        "value": "37",
+        "label": "tables"
+      },
+      {
+        "value": "11",
+        "label": "migrations"
+      },
+      {
+        "value": "7",
+        "label": "SDK / plugins"
+      }
+    ],
+    "category": "Fintech",
+    "github": "",
+    "demo": "https://hrskills-pay.com",
+    "featured": true,
+    "color": "purple",
+    "status": "En production",
+    "icon": "fa-bolt",
+    "local": false
+  },
+  {
+    "id": 7,
+    "title": "QuickServe",
+    "subtitle": "Gestion restaurant & complexe hôtelier",
+    "description": "Plateforme de gestion pour restaurants et partenaires : menu, réservations, événements, galerie et back-office.",
+    "long_description": "QuickServe gère le menu et les boissons, les services, les meubles et appartements à réserver, les événements, la galerie et les actualités, avec notifications push et espace administrateur. Les réservations peuvent être payées en Mobile Money via HR-Skills Pay, et un job planifié expire automatiquement les réservations non payées.",
+    "image": "projects/quickserve-live.png",
+    "technologies": [
+      "Node.js",
+      "Express 5",
+      "Sequelize 6",
+      "MySQL / PostgreSQL",
+      "Redis",
+      "socket.io",
+      "node-cron",
+      "Web Push",
+      "React 19",
+      "Vite 8",
+      "Tailwind 3",
+      "Netlify",
+      "Cloudinary",
+      "Nodemailer",
+      "pdfkit",
+      "HR-Skills Pay SDK"
+    ],
+    "stack": {
+      "Backend": [
+        "Node.js",
+        "Express 5",
+        "Sequelize 6",
+        "MySQL / PostgreSQL",
+        "Redis"
+      ],
+      "Temps réel": [
+        "socket.io",
+        "node-cron",
+        "Web Push"
+      ],
+      "Frontend": [
+        "React 19",
+        "Vite 8",
+        "Tailwind 3",
+        "Netlify"
+      ],
+      "Services": [
+        "Cloudinary",
+        "Nodemailer",
+        "pdfkit",
+        "HR-Skills Pay SDK"
+      ]
+    },
+    "features": [
+      "Menu, boissons et services du restaurant",
+      "Réservation de meubles, appartements et événements",
+      "Paiement Mobile Money des réservations",
+      "Expiration automatique des réservations (cron)",
+      "Galerie, actualités et notifications push",
+      "Espace administrateur"
+    ],
+    "metrics": [
+      {
+        "value": "14",
+        "label": "modèles"
+      },
+      {
+        "value": "11",
+        "label": "contrôleurs"
+      },
+      {
+        "value": "30",
+        "label": "composants JSX"
+      }
+    ],
+    "category": "Web App",
+    "github": "",
+    "demo": "https://quickserve.food",
+    "featured": true,
+    "color": "red",
+    "status": "En production",
+    "icon": "fa-utensils",
+    "local": false
+  },
+  {
+    "id": 8,
+    "title": "Saamaya OCity",
+    "subtitle": "SaaS de mobilité urbaine CEMAC",
+    "description": "Application Flutter multi-services : billets de transport, taxi, portefeuille, cargo, gares et location de voitures.",
+    "long_description": "Saamaya OCity est une application mobile de mobilité urbaine rebrandée à partir d'un template ride-hailing. Elle regroupe 14 modules : authentification, portefeuille, USSD, billets (le plus mûr), taxi, cargo, gares, support, location de voitures et thème white-label par tenant. Elle dialogue avec une API REST et WebSocket dont l'architecture (microservices, Kafka, Redis, Kubernetes) est décrite par le contrat d'API v8 ; le code serveur n'est pas présent sur cette machine.",
+    "image": "saamaya-ocity.jpg",
+    "technologies": [
+      "Flutter",
+      "Dart",
+      "Riverpod",
+      "Provider",
+      "go_router",
+      "Google Maps",
+      "flutter_map",
+      "Geolocator",
+      "Dio",
+      "WebSocket",
+      "flutter_secure_storage",
+      "Idempotency-Key",
+      "Firebase Messaging",
+      "REST + WebSocket",
+      "PostgreSQL",
+      "Redis (géolocalisation)",
+      "Kafka (événements)",
+      "Microservices Go / Node / Java",
+      "Kubernetes",
+      "MTN MoMo",
+      "Orange Money",
+      "GIMAC",
+      "Passerelle USSD",
+      "SMS",
+      "FCM",
+      "Cloudflare",
+      "Nginx / Envoy"
+    ],
+    "stack": {
+      "Application mobile (Flutter)": [
+        "Flutter",
+        "Dart",
+        "Riverpod",
+        "Provider",
+        "go_router"
+      ],
+      "Cartes & GPS": [
+        "Google Maps",
+        "flutter_map",
+        "Geolocator"
+      ],
+      "Réseau & sécurité": [
+        "Dio",
+        "WebSocket",
+        "flutter_secure_storage",
+        "Idempotency-Key"
+      ],
+      "Notifications": [
+        "Firebase Messaging"
+      ],
+      "Backend (selon le contrat d'API)": [
+        "REST + WebSocket",
+        "PostgreSQL",
+        "Redis (géolocalisation)",
+        "Kafka (événements)",
+        "Microservices Go / Node / Java",
+        "Kubernetes"
+      ],
+      "Paiements & messages": [
+        "MTN MoMo",
+        "Orange Money",
+        "GIMAC",
+        "Passerelle USSD",
+        "SMS",
+        "FCM"
+      ],
+      "Infrastructure": [
+        "Cloudflare",
+        "Nginx / Envoy"
+      ]
+    },
+    "features": [
+      "Billets de transport",
+      "Réservation de taxi et suivi",
+      "Portefeuille et USSD",
+      "Cargo, gares et location de voitures",
+      "White-label par tenant",
+      "Support client intégré",
+      "Billets QR signés HMAC-SHA256"
+    ],
+    "metrics": [
+      {
+        "value": "182",
+        "label": "fichiers Dart"
+      },
+      {
+        "value": "14",
+        "label": "modules"
+      },
+      {
+        "value": "24",
+        "label": "routes"
+      }
+    ],
+    "category": "Mobile App",
+    "github": "",
+    "demo": "",
+    "featured": false,
+    "color": "yellow",
+    "status": "En développement",
+    "icon": "fa-taxi",
+    "local": false
+  },
+  {
+    "id": 9,
+    "title": "Sagesse Africaine",
+    "subtitle": "Proverbes & sagesse du continent",
+    "description": "Application web dédiée aux proverbes, citations et contes des nations africaines.",
+    "long_description": "Sagesse Africaine valorise le patrimoine culturel immatériel de l'Afrique : proverbes, citations et contes classés par pays, thème et langue, avec sagesse du jour, partage et mode hors-ligne.",
+    "image": "projects/sagesse-africaine.png",
+    "technologies": [
+      "React",
+      "Vite",
+      "PWA",
+      "Node.js",
+      "MongoDB"
+    ],
+    "stack": {
+      "Frontend": [
+        "React",
+        "Vite",
+        "PWA"
+      ],
+      "Backend": [
+        "Node.js",
+        "MongoDB"
+      ]
+    },
+    "features": [
+      "Proverbes par pays, thème et langue",
+      "Sagesse du jour",
+      "Partage sur les réseaux sociaux",
+      "Mode hors-ligne (PWA)"
+    ],
+    "metrics": [],
+    "category": "Web App",
+    "github": "",
+    "demo": "https://sagesseafricaine.org",
+    "featured": false,
+    "color": "yellow",
+    "status": "En production",
+    "icon": "fa-book-open",
+    "local": false
+  },
+  {
+    "id": 10,
+    "title": "HR Coiffure",
+    "subtitle": "Réservation, boutique et fidélité pour salons",
+    "description": "Site web, borne d'accueil tactile et back-office pour deux salons de coiffure à Yaoundé : rendez-vous, boutique, fidélité et paiement Mobile Money.",
+    "long_description": "HR Coiffure est une plateforme complète pour deux salons de Yaoundé (Tropicana, Mvan et Descente Mvan). Les clientes réservent avec la coiffeuse de leur choix : chaque prestation affiche la durée réellement réservée dans le planning. S'y ajoutent une boutique de produits capillaires, un programme de fidélité à points, une borne d'accueil en salon et un back-office d'administration. Paiement MTN, Orange Money ou espèces.",
+    "image": "projects/hr-coiffure.png",
+    "technologies": [
+      "Next.js",
+      "React",
+      "Réservation en ligne",
+      "Borne d'accueil",
+      "Back-office",
+      "MTN MoMo",
+      "Orange Money"
+    ],
+    "stack": {
+      "Web": [
+        "Next.js",
+        "React"
+      ],
+      "Parcours": [
+        "Réservation en ligne",
+        "Borne d'accueil",
+        "Back-office"
+      ],
+      "Paiement": [
+        "MTN MoMo",
+        "Orange Money"
+      ]
+    },
+    "features": [
+      "Prise de rendez-vous avec la coiffeuse de son choix",
+      "Catalogue de prestations avec durée et prix",
+      "Boutique de produits (retrait en salon ou livraison)",
+      "Fidélité : points crédités à chaque prestation et achat",
+      "Borne d'accueil tactile en salon",
+      "Back-office d'administration",
+      "Comptes clients et paiement Mobile Money"
+    ],
+    "metrics": [],
+    "category": "Web App",
+    "github": "",
+    "demo": "https://hr-coiffure.com",
+    "featured": true,
+    "color": "purple",
+    "status": "En production",
+    "icon": "fa-scissors",
+    "local": false
+  },
+  {
+    "id": 11,
+    "title": "BuyMeKola",
+    "subtitle": "Soutenir ses créateurs préférés",
+    "description": "Plateforme de soutien aux créateurs : tips, abonnements, wallet, liens de paiement, gamification et messagerie.",
+    "long_description": "BuyMeKola permet aux fans de soutenir financièrement des créateurs et d'accéder à du contenu exclusif. L'application propose des tableaux de bord créateur, supporter et admin, un wallet, des abonnements, des liens de paiement avec QR code, des cadeaux virtuels, des badges, niveaux et classements, une messagerie en temps réel et un widget embarquable.",
+    "image": "projects/buymekola.png",
+    "technologies": [
+      "React 18",
+      "TypeScript",
+      "Vite 7",
+      "Tailwind 3",
+      "Ant Design",
+      "Framer Motion",
+      "Redux Toolkit",
+      "TanStack Query",
+      "i18next",
+      "socket.io",
+      "Stripe",
+      "PayPal",
+      "Recharts"
+    ],
+    "stack": {
+      "Frontend": [
+        "React 18",
+        "TypeScript",
+        "Vite 7",
+        "Tailwind 3",
+        "Ant Design",
+        "Framer Motion"
+      ],
+      "État & données": [
+        "Redux Toolkit",
+        "TanStack Query",
+        "i18next"
+      ],
+      "Temps réel & paiement": [
+        "socket.io",
+        "Stripe",
+        "PayPal"
+      ],
+      "Visualisation": [
+        "Recharts"
+      ]
+    },
+    "features": [
+      "Dashboards créateur, supporter et admin",
+      "Tips, abonnements et wallet",
+      "Liens de paiement avec QR code",
+      "Cadeaux virtuels, badges, niveaux et classement",
+      "Messagerie en temps réel",
+      "Widget embarquable, multi-devises et multilingue"
+    ],
+    "metrics": [
+      {
+        "value": "58",
+        "label": "pages"
+      },
+      {
+        "value": "105",
+        "label": "composants"
+      },
+      {
+        "value": "3",
+        "label": "tableaux de bord"
+      }
+    ],
+    "category": "Web App",
+    "github": "",
+    "demo": "https://buymekola-africa.com",
+    "featured": false,
+    "color": "purple",
+    "status": "En production",
+    "icon": "fa-handshake-angle",
+    "local": false
+  },
+  {
+    "id": 12,
+    "title": "FECAFOOT IA",
+    "subtitle": "Analyse vidéo de football par intelligence artificielle",
+    "description": "Plateforme locale d'analyse de matchs de football à 11 : détection, suivi, statistiques et rapports, avec une approche « fail-closed » qui n'invente jamais de résultat.",
+    "long_description": "FECAFOOT IA (Football AI Analytics) transforme une vidéo de match en données exploitables. Sans modèle validé, le logiciel mesure la vidéo et sa couverture et marque les métriques sportives comme indisponibles plutôt que de fabriquer des chiffres. Le pipeline enchaîne détection, suivi, équipes, calibration caméra, événements puis statistiques avec porte de validation statistique (intervalles de Wilson). Trois générations de détecteurs YOLO ont été entraînées sur GPU loué ; aucun n'a encore franchi la porte de validation, donc les métriques sportives ne sont volontairement pas publiées.",
+    "image": "",
+    "technologies": [
+      "Python 3.12",
+      "FastAPI",
+      "SQLAlchemy 2 async",
+      "Alembic",
+      "NATS",
+      "S3 (boto3)",
+      "OpenCV",
+      "ONNX Runtime",
+      "YOLO26 (Ultralytics)",
+      "ByteTrack",
+      "Deep-EIoU",
+      "PyTorch",
+      "scikit-learn",
+      "SQLite / PostgreSQL (RLS)",
+      "statsmodels",
+      "openpyxl",
+      "MediaMTX",
+      "uv",
+      "hatchling",
+      "pytest",
+      "ruff",
+      "GPU loué via SSH"
+    ],
+    "stack": {
+      "Backend": [
+        "Python 3.12",
+        "FastAPI",
+        "SQLAlchemy 2 async",
+        "Alembic",
+        "NATS",
+        "S3 (boto3)"
+      ],
+      "Vision & IA": [
+        "OpenCV",
+        "ONNX Runtime",
+        "YOLO26 (Ultralytics)",
+        "ByteTrack",
+        "Deep-EIoU",
+        "PyTorch",
+        "scikit-learn"
+      ],
+      "Données": [
+        "SQLite / PostgreSQL (RLS)",
+        "statsmodels",
+        "openpyxl",
+        "MediaMTX"
+      ],
+      "Outillage": [
+        "uv",
+        "hatchling",
+        "pytest",
+        "ruff",
+        "GPU loué via SSH"
+      ]
+    },
+    "features": [
+      "Détection des joueurs, gardiens, arbitres et du ballon",
+      "Suivi multi-objets et ré-identification",
+      "Séparation des équipes par couleur (95 % mesurés)",
+      "Calibration caméra dynamique et minimaps (Voronoï, heatmaps)",
+      "Détection des passes, tirs, buts et centres ; possession ; xG",
+      "Statistiques avec validation de Wilson, exports Excel",
+      "Sessions live, multi-caméra, rapport de qualité des données",
+      "Cahier des charges technique et 13 documents d'architecture"
+    ],
+    "metrics": [
+      {
+        "value": "231",
+        "label": "fichiers Python"
+      },
+      {
+        "value": "~1 200",
+        "label": "tests"
+      },
+      {
+        "value": "26",
+        "label": "migrations"
+      },
+      {
+        "value": "3",
+        "label": "versions de détecteur"
+      }
+    ],
+    "category": "IA & Data",
+    "github": "",
+    "demo": "",
+    "featured": true,
+    "color": "green",
+    "status": "En développement",
+    "icon": "fa-futbol",
+    "local": true
+  },
+  {
+    "id": 13,
+    "title": "TaxiSafe / Safe Taxi",
+    "subtitle": "Sécurité des taxis par réseau Bluetooth communautaire",
+    "description": "Système complet de sécurité pour taxis de Yaoundé : application passager/chauffeur Flutter hors-ligne, backend Go, IA embarquée et outil d'enrôlement des modules ESP32.",
+    "long_description": "TaxiSafe réunit trois briques. L'application Flutter est « offline-first » : chaque écran lit d'abord la base locale et chaque écriture passe par une file outbox rejouée par un moteur de synchronisation unique. Le backend Safe Taxi est un monolithe modulaire en Go (constellation BLE, flotte, géo, sécurité, suivi, trajets) accompagné d'un service d'inférence Python. Un outil de bureau permet aux agents municipaux d'enrôler un taxi, de générer sa paire de clés Ed25519 et de flasher son module ESP32.",
+    "image": "",
+    "technologies": [
+      "Flutter 3.41",
+      "Dart 3.11",
+      "Riverpod",
+      "go_router",
+      "Drift",
+      "dio",
+      "BLE",
+      "Ed25519",
+      "HPKE",
+      "Go 1.26",
+      "chi",
+      "pgx",
+      "goose",
+      "PostgreSQL 18 / PostGIS",
+      "Redis",
+      "Valhalla",
+      "Python 3.12",
+      "FastAPI",
+      "ONNX Runtime",
+      "scikit-learn",
+      "Prometheus",
+      "OpenTelemetry",
+      "Caddy",
+      "systemd",
+      "Go",
+      "Wails 2",
+      "Bubble Tea",
+      "ESP32"
+    ],
+    "stack": {
+      "Application mobile": [
+        "Flutter 3.41",
+        "Dart 3.11",
+        "Riverpod",
+        "go_router",
+        "Drift",
+        "dio",
+        "BLE"
+      ],
+      "Cryptographie": [
+        "Ed25519",
+        "HPKE"
+      ],
+      "Backend": [
+        "Go 1.26",
+        "chi",
+        "pgx",
+        "goose",
+        "PostgreSQL 18 / PostGIS",
+        "Redis",
+        "Valhalla"
+      ],
+      "IA": [
+        "Python 3.12",
+        "FastAPI",
+        "ONNX Runtime",
+        "scikit-learn"
+      ],
+      "Observabilité & déploiement": [
+        "Prometheus",
+        "OpenTelemetry",
+        "Caddy",
+        "systemd"
+      ],
+      "Outil d'enrôlement": [
+        "Go",
+        "Wails 2",
+        "Bubble Tea",
+        "ESP32"
+      ]
+    },
+    "features": [
+      "Suivi de trajet, alerte de détresse et zones dangereuses",
+      "Relais de proximité entre taxis par Bluetooth (constellation)",
+      "Architecture hors-ligne : base locale, outbox, synchronisation",
+      "Signatures Ed25519 et profils HPKE pour chaque véhicule",
+      "Scoring de risque, estimation d'arrivée et détection d'anomalies (ONNX)",
+      "Outbox/inbox transactionnel et audit append-only côté backend",
+      "Enrôlement d'un taxi en 8 étapes avec flash USB du module ESP32",
+      "8 spécifications OpenAPI 3.1"
+    ],
+    "metrics": [
+      {
+        "value": "164",
+        "label": "fichiers Dart"
+      },
+      {
+        "value": "66",
+        "label": "opérations API"
+      },
+      {
+        "value": "~550",
+        "label": "tests (app + backend)"
+      },
+      {
+        "value": "17",
+        "label": "modules Dart"
+      }
+    ],
+    "category": "Mobile App",
+    "github": "",
+    "demo": "",
+    "featured": true,
+    "color": "yellow",
+    "status": "En développement",
+    "icon": "fa-taxi",
+    "local": true
+  },
+  {
+    "id": 14,
+    "title": "LinkPay",
+    "subtitle": "Écosystème de paiement : liens, disbursement et vérification",
+    "description": "Ensemble d'outils autour de la passerelle LinkPay : API d'authentification mobile, console de disbursement, dashboard de vérification de transactions et liens de paiement.",
+    "long_description": "LinkPay regroupe plusieurs réalisations. Une API Laravel gère l'authentification du client mobile (Passport, OTP, refresh tokens). Une console SaaS FastAPI envoie des paiements simples ou en masse via l'API Link Gateway (CSV, historique, export PDF, détection d'IP pour la liste blanche partenaire). Un dashboard FastAPI + React vérifie en temps réel le statut des transactions grâce à un miroir Redis de la base. Des prototypes Node.js créent des liens de paiement MTN MoMo. L'authentification biométrique par appareil (ECDSA P-256, challenge signé) et les intégrations Smobilpay/Maviance, Cartevo et transferts multidevises ont été spécifiées et validées en sandbox par des rapports de test.",
+    "image": "",
+    "technologies": [
+      "PHP 8.2",
+      "Laravel 12",
+      "Passport",
+      "OTP",
+      "FastAPI",
+      "SQLModel",
+      "httpx",
+      "Jinja2",
+      "reportlab",
+      "React 19",
+      "Vite",
+      "Tailwind",
+      "Socket.IO",
+      "Redis 7",
+      "MySQL",
+      "Node.js",
+      "Express 5",
+      "SQLite",
+      "MTN MoMo RequestToPay",
+      "JWT",
+      "Biométrie ECDSA P-256",
+      "Rate limiting",
+      "Link Gateway",
+      "Smobilpay / Maviance",
+      "Cartevo",
+      "Tranzak SDK"
+    ],
+    "stack": {
+      "API mobile": [
+        "PHP 8.2",
+        "Laravel 12",
+        "Passport",
+        "OTP"
+      ],
+      "Console de disbursement": [
+        "FastAPI",
+        "SQLModel",
+        "httpx",
+        "Jinja2",
+        "reportlab"
+      ],
+      "Dashboard de vérification": [
+        "FastAPI",
+        "React 19",
+        "Vite",
+        "Tailwind",
+        "Socket.IO",
+        "Redis 7",
+        "MySQL"
+      ],
+      "Liens de paiement": [
+        "Node.js",
+        "Express 5",
+        "SQLite",
+        "MTN MoMo RequestToPay"
+      ],
+      "Sécurité": [
+        "JWT",
+        "Biométrie ECDSA P-256",
+        "Rate limiting"
+      ],
+      "Intégrations": [
+        "Link Gateway",
+        "Smobilpay / Maviance",
+        "Cartevo",
+        "Tranzak SDK"
+      ]
+    },
+    "features": [
+      "Authentification mobile : login, inscription, OTP, refresh token",
+      "Disbursement simple et de masse par CSV avec limitation de débit",
+      "Historique, recherche, export PDF et consultation du solde",
+      "Vérification de statut par transCode ou refPrint, en lot",
+      "File de traitement FIFO et résultats poussés par WebSocket",
+      "Rôles utilisateur / admin et gestion des comptes",
+      "Création de liens de paiement avec page facture et statistiques",
+      "Recettes sandbox validées : factures ENEO, CAMTEL, CamWater, Canal+, StarTimes, recharges, EUR/USD/GBP"
+    ],
+    "metrics": [
+      {
+        "value": "8",
+        "label": "routes dashboard"
+      },
+      {
+        "value": "~55 000",
+        "label": "transactions en miroir"
+      },
+      {
+        "value": "13",
+        "label": "migrations Laravel"
+      },
+      {
+        "value": "4",
+        "label": "applications"
+      }
+    ],
+    "category": "Fintech",
+    "github": "",
+    "demo": "",
+    "featured": true,
+    "color": "purple",
+    "status": "En développement",
+    "icon": "fa-link",
+    "local": true
+  },
+  {
+    "id": 15,
+    "title": "SignoLSC",
+    "subtitle": "Reconnaissance de la langue des signes par IA",
+    "description": "Application mobile et API de reconnaissance de l'alphabet des signes par caméra, première étape vers la langue des signes camerounaise (LSC).",
+    "long_description": "SignoLSC vise à réduire la barrière de communication entre la communauté sourde camerounaise et le reste de la population. Le MVP livré de bout en bout est une démonstration ASL : l'application Flutter envoie les images de la caméra, via image ou WebSocket, à une passerelle Go qui appelle un service Python (MediaPipe + CNN ONNX) pour reconnaître l'alphabet A-Z, avec synthèse vocale. Le dictionnaire LSC, les contributions d'experts et le mode hors-ligne sont planifiés sur un plan de 6 mois.",
+    "image": "",
+    "technologies": [
+      "Flutter",
+      "flutter_bloc",
+      "go_router",
+      "camera",
+      "flutter_tts",
+      "Go 1.25",
+      "Fiber v2",
+      "pgx",
+      "goose",
+      "JWT",
+      "WebSocket",
+      "Python",
+      "FastAPI",
+      "MediaPipe",
+      "OpenCV",
+      "ONNX Runtime",
+      "ElevenLabs",
+      "PostgreSQL 16",
+      "Redis 7",
+      "Docker Compose",
+      "Caddy",
+      "Sauvegardes chiffrées (age)"
+    ],
+    "stack": {
+      "Mobile": [
+        "Flutter",
+        "flutter_bloc",
+        "go_router",
+        "camera",
+        "flutter_tts"
+      ],
+      "Passerelle": [
+        "Go 1.25",
+        "Fiber v2",
+        "pgx",
+        "goose",
+        "JWT",
+        "WebSocket"
+      ],
+      "IA": [
+        "Python",
+        "FastAPI",
+        "MediaPipe",
+        "OpenCV",
+        "ONNX Runtime",
+        "ElevenLabs"
+      ],
+      "Données & infra": [
+        "PostgreSQL 16",
+        "Redis 7",
+        "Docker Compose",
+        "Caddy",
+        "Sauvegardes chiffrées (age)"
+      ]
+    },
+    "features": [
+      "Reconnaissance de l'alphabet par image ou flux WebSocket (10 FPS max)",
+      "Authentification complète : inscription, connexion, refresh, déconnexion",
+      "Profil utilisateur et synthèse vocale MP3",
+      "Plan : dictionnaire LSC-50, mode conversation, apprentissage hors-ligne"
+    ],
+    "metrics": [
+      {
+        "value": "96 %",
+        "label": "couverture tests Python"
+      },
+      {
+        "value": "76 %",
+        "label": "couverture Go"
+      },
+      {
+        "value": "29",
+        "label": "tests Flutter"
+      }
+    ],
+    "category": "IA & Data",
+    "github": "",
+    "demo": "",
+    "featured": false,
+    "color": "cyan",
+    "status": "MVP",
+    "icon": "fa-hands",
+    "local": true
+  },
+  {
+    "id": 16,
+    "title": "NoScam",
+    "subtitle": "Vérification et signalement de numéros frauduleux",
+    "description": "Plateforme anti-arnaque téléphonique : scoring de numéros, watchlist, groupes famille, certification et API B2B.",
+    "long_description": "NoScam permet de signaler et vérifier des numéros de téléphone suspects. L'API Go gère signalements, scoring, watchlist avec notifications push, espaces famille, litiges, certification de numéros, synthèse IA par Gemini et une API B2B par clé. Un worker Python consomme les événements via RabbitMQ. Un audit interne daté du 19 septembre 2026 a identifié les points restant à corriger avant mise en production.",
+    "image": "",
+    "technologies": [
+      "Go 1.26",
+      "Fiber v2",
+      "GORM",
+      "PostgreSQL",
+      "Redis",
+      "RabbitMQ",
+      "JWT",
+      "Python 3.12",
+      "aio-pika",
+      "SQLAlchemy 2",
+      "scikit-learn",
+      "pydantic",
+      "Gemini",
+      "Firebase Cloud Messaging",
+      "Africa's Talking",
+      "Email",
+      "Google",
+      "Telegram"
+    ],
+    "stack": {
+      "API": [
+        "Go 1.26",
+        "Fiber v2",
+        "GORM",
+        "PostgreSQL",
+        "Redis",
+        "RabbitMQ",
+        "JWT"
+      ],
+      "Worker": [
+        "Python 3.12",
+        "aio-pika",
+        "SQLAlchemy 2",
+        "scikit-learn",
+        "pydantic"
+      ],
+      "IA & notifications": [
+        "Gemini",
+        "Firebase Cloud Messaging",
+        "Africa's Talking"
+      ],
+      "Authentification": [
+        "Email",
+        "Google",
+        "Telegram"
+      ]
+    },
+    "features": [
+      "Signalement et scoring des numéros",
+      "Watchlist avec alertes push",
+      "Groupes famille",
+      "Litiges et certification de numéros",
+      "API B2B : clés, score, batch, suivi d'usage",
+      "Synthèse IA des signalements",
+      "Paiements via HR-Skills Pay"
+    ],
+    "metrics": [
+      {
+        "value": "12",
+        "label": "handlers"
+      },
+      {
+        "value": "~46",
+        "label": "routes"
+      },
+      {
+        "value": "19",
+        "label": "tables"
+      },
+      {
+        "value": "9",
+        "label": "migrations"
+      }
+    ],
+    "category": "Web App",
+    "github": "",
+    "demo": "",
+    "featured": false,
+    "color": "red",
+    "status": "En développement",
+    "icon": "fa-shield-halved",
+    "local": true
+  },
+  {
+    "id": 17,
+    "title": "HealthIA",
+    "subtitle": "Dossier médical électronique avec carte NFC",
+    "description": "Application web de santé : carte médicale NFC, dossier médical, rendez-vous, pharmacie, paiement et urgences.",
+    "long_description": "HealthIA (Médecine Web App) est une application Flask avec frontend PWA. Elle gère les cartes médicales lisibles en NFC, le dossier médical électronique (examens, vaccins, constantes), les rendez-vous avec rappels, la pharmacie avec alertes de stock, le paiement et un mode urgence. Le module d'aide à la décision repose sur des règles métier (interactions médicamenteuses), pas sur un modèle d'apprentissage automatique. Projet présenté en soutenance.",
+    "image": "",
+    "technologies": [
+      "Flask 3",
+      "SQLAlchemy",
+      "Flask-JWT-Extended",
+      "Alembic",
+      "Celery + Redis",
+      "marshmallow",
+      "reportlab (PDF)",
+      "qrcode",
+      "bcrypt",
+      "cryptography",
+      "Flask-Limiter",
+      "Vite",
+      "TypeScript",
+      "JavaScript",
+      "PWA",
+      "flasgger (Swagger)",
+      "pytest"
+    ],
+    "stack": {
+      "Backend": [
+        "Flask 3",
+        "SQLAlchemy",
+        "Flask-JWT-Extended",
+        "Alembic",
+        "Celery + Redis",
+        "marshmallow"
+      ],
+      "Documents & sécurité": [
+        "reportlab (PDF)",
+        "qrcode",
+        "bcrypt",
+        "cryptography",
+        "Flask-Limiter"
+      ],
+      "Frontend": [
+        "Vite",
+        "TypeScript",
+        "JavaScript",
+        "PWA"
+      ],
+      "API": [
+        "flasgger (Swagger)",
+        "pytest"
+      ]
+    },
+    "features": [
+      "Carte médicale avec lecture NFC et QR code",
+      "Dossier médical : examens, vaccins, constantes",
+      "Rendez-vous avec rappels automatiques",
+      "Pharmacie et alertes de stock",
+      "Paiement et espace d'urgence",
+      "Aide à la décision par règles (interactions médicamenteuses)",
+      "Administration, audit et rate limiting"
+    ],
+    "metrics": [
+      {
+        "value": "9",
+        "label": "modules API"
+      },
+      {
+        "value": "~65",
+        "label": "routes"
+      },
+      {
+        "value": "~64",
+        "label": "tests"
+      },
+      {
+        "value": "13",
+        "label": "pages"
+      }
+    ],
+    "category": "Web App",
+    "github": "",
+    "demo": "",
+    "featured": false,
+    "color": "cyan",
+    "status": "Projet académique",
+    "icon": "fa-heart-pulse",
+    "local": true
+  },
+  {
+    "id": 18,
+    "title": "GlobalBush Travel",
+    "subtitle": "Réservation de vols, hôtels et services de voyage",
+    "description": "Plateforme de voyage multilingue : vols, hôtels, location de voiture, transferts, assurance, e-SIM, visas et packages.",
+    "long_description": "GlobalBush Travel est une application Next.js bilingue (français / anglais) qui agrège les API de distribution de voyage : Duffel et Travelopro pour les vols, une API hôtels, et des modules pour la location, les transferts, l'assurance, l'e-SIM, les salons aéroport, les visas et les packages. Le paiement Mobile Money est intégré. Un rapport de certification documente l'intégration Travelopro (recherche, validation de tarif et confirmation de prix validées).",
+    "image": "",
+    "technologies": [
+      "Next.js 15",
+      "React 18",
+      "TypeScript",
+      "Tailwind",
+      "next-intl",
+      "zustand",
+      "Framer Motion",
+      "react-hook-form",
+      "zod",
+      "Radix",
+      "Leaflet",
+      "Duffel",
+      "Travelopro",
+      "Mobile Money",
+      "WhatsApp"
+    ],
+    "stack": {
+      "Frontend": [
+        "Next.js 15",
+        "React 18",
+        "TypeScript",
+        "Tailwind",
+        "next-intl",
+        "zustand",
+        "Framer Motion"
+      ],
+      "Formulaires & UI": [
+        "react-hook-form",
+        "zod",
+        "Radix",
+        "Leaflet"
+      ],
+      "Intégrations": [
+        "Duffel",
+        "Travelopro",
+        "Mobile Money",
+        "WhatsApp"
+      ]
+    },
+    "features": [
+      "Recherche et réservation de vols",
+      "Hôtels, location de voiture et transferts",
+      "Assurance, e-SIM, salons aéroport et visas",
+      "Packages vacances, mariage et activités",
+      "Interface bilingue FR / EN",
+      "Intégration back-office administrateur"
+    ],
+    "metrics": [
+      {
+        "value": "56",
+        "label": "pages"
+      },
+      {
+        "value": "~58",
+        "label": "routes API"
+      },
+      {
+        "value": "2",
+        "label": "langues"
+      }
+    ],
+    "category": "Web App",
+    "github": "",
+    "demo": "",
+    "featured": false,
+    "color": "orange",
+    "status": "En développement",
+    "icon": "fa-plane",
+    "local": true
+  },
+  {
+    "id": 19,
+    "title": "AfribaPay SDK",
+    "subtitle": "SDK Python pour paiements Mobile Money",
+    "description": "SDK Python synchrone et asynchrone pour l'API AfribaPAY : encaissements, décaissements, webhooks et intégrations Flask, Django et FastAPI.",
+    "long_description": "SDK typé publié sous le nom afribapay-sdk-by-sz (version alpha 0.1.0) couvrant le payin et le payout Mobile Money, la vérification de statut, les OTP, les paiements par banque et les webhooks. Validé sur le sandbox AfribaPAY le 18 septembre 2026, avec rapports de scan de secrets, de menaces et de scorecard API.",
+    "image": "",
+    "technologies": [
+      "Python 3.10+",
+      "Typage complet (py.typed)",
+      "httpx",
+      "pydantic 2",
+      "pytest",
+      "mypy",
+      "ruff",
+      "hatchling",
+      "Flask",
+      "Django",
+      "FastAPI"
+    ],
+    "stack": {
+      "Langage": [
+        "Python 3.10+",
+        "Typage complet (py.typed)"
+      ],
+      "Bibliothèques": [
+        "httpx",
+        "pydantic 2"
+      ],
+      "Qualité": [
+        "pytest",
+        "mypy",
+        "ruff",
+        "hatchling"
+      ],
+      "Intégrations": [
+        "Flask",
+        "Django",
+        "FastAPI"
+      ]
+    },
+    "features": [
+      "Payin et payout Mobile Money",
+      "Statut des transactions, OTP et Wave",
+      "Webhooks avec vérification",
+      "Clients synchrone et asynchrone"
+    ],
+    "metrics": [
+      {
+        "value": "~49",
+        "label": "tests"
+      },
+      {
+        "value": "7",
+        "label": "modules"
+      },
+      {
+        "value": "0.1.0",
+        "label": "version"
+      }
+    ],
+    "category": "SDK & API",
+    "github": "",
+    "demo": "",
+    "featured": false,
+    "color": "green",
+    "status": "Livré",
+    "icon": "fa-code",
+    "local": true
+  },
+  {
+    "id": 20,
+    "title": "Bridgecard SDK",
+    "subtitle": "SDK Python pour cartes virtuelles",
+    "description": "SDK Python non officiel pour l'API d'émission de cartes Bridgecard : titulaires, cartes USD et NGN, webhooks.",
+    "long_description": "Client Python typé pour l'émission de cartes virtuelles : gestion des titulaires, cartes USD et Naira, ressources annexes et vérification de webhooks, avec chiffrement AES des échanges. Licence MIT, version alpha 0.1.0.",
+    "image": "",
+    "technologies": [
+      "Python 3.9+",
+      "httpx",
+      "pydantic 2",
+      "aes-everywhere",
+      "pytest (sandbox)"
+    ],
+    "stack": {
+      "Langage": [
+        "Python 3.9+"
+      ],
+      "Bibliothèques": [
+        "httpx",
+        "pydantic 2",
+        "aes-everywhere"
+      ],
+      "Qualité": [
+        "pytest (sandbox)"
+      ]
+    },
+    "features": [
+      "Titulaires de cartes (cardholders)",
+      "Cartes virtuelles USD et NGN",
+      "Webhooks",
+      "Tests en environnement sandbox"
+    ],
+    "metrics": [
+      {
+        "value": "~86",
+        "label": "tests"
+      },
+      {
+        "value": "MIT",
+        "label": "licence"
+      }
+    ],
+    "category": "SDK & API",
+    "github": "",
+    "demo": "",
+    "featured": false,
+    "color": "blue",
+    "status": "Livré",
+    "icon": "fa-credit-card",
+    "local": true
+  },
+  {
+    "id": 21,
+    "title": "CyberSource FastAPI",
+    "subtitle": "Portage de CyberSource Secure Acceptance",
+    "description": "Portage PHP → FastAPI de l'intégration CyberSource : paiement web/mobile et Silent Order Post, avec signatures HMAC-SHA256.",
+    "long_description": "Service FastAPI qui reprend les deux modes CyberSource Secure Acceptance : Web/Mobile (redirection) et Silent Order Post (saisie carte côté marchand), avec signature HMAC-SHA256, tokenisation, paiements récurrents et échelonnés, et pages de paiement Jinja.",
+    "image": "",
+    "technologies": [
+      "Python",
+      "FastAPI",
+      "pydantic 2",
+      "Jinja2",
+      "HMAC-SHA256",
+      "Tokenisation"
+    ],
+    "stack": {
+      "Backend": [
+        "Python",
+        "FastAPI",
+        "pydantic 2",
+        "Jinja2"
+      ],
+      "Sécurité": [
+        "HMAC-SHA256",
+        "Tokenisation"
+      ]
+    },
+    "features": [
+      "Secure Acceptance Web / Mobile",
+      "Silent Order Post",
+      "Paiements récurrents et échelonnés",
+      "Signature et vérification des messages"
+    ],
+    "metrics": [
+      {
+        "value": "13",
+        "label": "routes"
+      },
+      {
+        "value": "2",
+        "label": "modes de paiement"
+      }
+    ],
+    "category": "SDK & API",
+    "github": "",
+    "demo": "",
+    "featured": false,
+    "color": "blue",
+    "status": "Livré",
+    "icon": "fa-lock",
+    "local": true
+  },
+  {
+    "id": 22,
+    "title": "IAI Rescue Force",
+    "subtitle": "Jeu d'action : la crise de Nkolongang",
+    "description": "Jeu de tir d'action développé avec Godot : 5 personnages jouables, 10 niveaux avec boss et campagne scénarisée.",
+    "long_description": "IAI Rescue Force – Crise de Nkolongang est un prototype jouable développé avec Godot 4.6 (profil Mobile). Il propose une campagne de 10 niveaux avec boss et déblocages, 5 personnages jouables, un menu principal, un HUD, une pause, un classement et un écran de résultat. Le scénario canon et le document de conception (GDD) sont rédigés.",
+    "image": "",
+    "technologies": [
+      "Godot 4.6",
+      "GDScript",
+      "Sprites et VFX",
+      "Scènes .tscn",
+      "GDD",
+      "Mobile",
+      "Desktop"
+    ],
+    "stack": {
+      "Moteur": [
+        "Godot 4.6",
+        "GDScript"
+      ],
+      "Contenu": [
+        "Sprites et VFX",
+        "Scènes .tscn",
+        "GDD"
+      ],
+      "Plateforme": [
+        "Mobile",
+        "Desktop"
+      ]
+    },
+    "features": [
+      "10 niveaux avec boss et déblocages",
+      "5 personnages jouables",
+      "Menu, pause, HUD et classement",
+      "Difficulté croissante par niveau"
+    ],
+    "metrics": [
+      {
+        "value": "~4 100",
+        "label": "lignes GDScript"
+      },
+      {
+        "value": "13",
+        "label": "scènes"
+      },
+      {
+        "value": "10",
+        "label": "niveaux"
+      }
+    ],
+    "category": "Jeu vidéo",
+    "github": "",
+    "demo": "",
+    "featured": false,
+    "color": "red",
+    "status": "Prototype jouable",
+    "icon": "fa-gamepad",
+    "local": true
+  },
+  {
+    "id": 23,
+    "title": "Luna Chatbot Widget",
+    "subtitle": "Widget de capture de leads gamifié",
+    "description": "Widget en HTML/CSS/JS pur : parcours scripté en 7 écrans, intégrable dans Webflow.",
+    "long_description": "Luna est un widget conversationnel sans dépendance avec modes hero et sticky. Le flux est scripté (ce n'est pas une IA générative) : prénom, comparaison de services, scénario interactif, choix de persona, capture d'email puis redirection. Effets sonores Web Audio, confettis chargés à la demande, persistance de session 24 h, envoi de leads compatible Zapier, adaptateur GA4 et build en embed autonome pour Webflow.",
+    "image": "",
+    "technologies": [
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "Web Audio API",
+      "Zapier",
+      "GA4",
+      "Webflow",
+      "Node.js (embed)"
+    ],
+    "stack": {
+      "Front": [
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "Web Audio API"
+      ],
+      "Intégrations": [
+        "Zapier",
+        "GA4",
+        "Webflow"
+      ],
+      "Build": [
+        "Node.js (embed)"
+      ]
+    },
+    "features": [
+      "Parcours en 7 écrans",
+      "Capture de leads",
+      "Persistance de session 24 h",
+      "API publique window.LunaChatbot"
+    ],
+    "metrics": [
+      {
+        "value": "~1 900",
+        "label": "lignes JS"
+      },
+      {
+        "value": "~1 000",
+        "label": "lignes CSS"
+      },
+      {
+        "value": "0",
+        "label": "dépendance"
+      }
+    ],
+    "category": "Web App",
+    "github": "",
+    "demo": "",
+    "featured": false,
+    "color": "blue",
+    "status": "Livré",
+    "icon": "fa-comments",
+    "local": true
+  },
+  {
+    "id": 24,
+    "title": "Video Conferencing App",
+    "subtitle": "Visioconférence à durée limitée",
+    "description": "Application Flask + 100ms : rooms, codes hôte/invité, fin automatique de session.",
+    "long_description": "Backend Flask qui pilote l'API 100ms pour créer des rooms, générer des codes par rôle (hôte ou invité), surveiller les sessions et terminer automatiquement l'appel après 5 ou 10 minutes, avec frontend statique et tests.",
+    "image": "",
+    "technologies": [
+      "Flask 3",
+      "Python",
+      "requests",
+      "100ms",
+      "pytest"
+    ],
+    "stack": {
+      "Backend": [
+        "Flask 3",
+        "Python",
+        "requests"
+      ],
+      "Vidéo": [
+        "100ms"
+      ],
+      "Qualité": [
+        "pytest"
+      ]
+    },
+    "features": [
+      "Création de room et codes hôte / invité",
+      "Arrêt automatique de session",
+      "Monitoring des sessions",
+      "Endpoint de santé"
+    ],
+    "metrics": [
+      {
+        "value": "~8",
+        "label": "routes"
+      },
+      {
+        "value": "23",
+        "label": "tests"
+      }
+    ],
+    "category": "Web App",
+    "github": "",
+    "demo": "",
+    "featured": false,
+    "color": "blue",
+    "status": "Livré",
+    "icon": "fa-video",
+    "local": true
+  }
+]

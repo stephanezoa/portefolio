@@ -1,11 +1,32 @@
-from flask import Blueprint, render_template
+import json
+import os
+from datetime import datetime
+
+from flask import Blueprint, render_template, current_app, abort
 
 bp = Blueprint('main', __name__)
+
+FEATURED_ON_HOME = ['Père Nkap', 'Mboa News', 'TOURISM237', 'HR-Skills Pay']
+
+
+def _load_projects():
+    with open(os.path.join(current_app.config['DATA_DIR'], 'projects.json'), encoding='utf-8') as f:
+        return json.load(f)
+
 
 @bp.route('/')
 def home():
     """Page d'accueil"""
-    return render_template('home.html')
+    projects = _load_projects()
+    by_title = {p['title']: p for p in projects}
+    featured = [by_title[t] for t in FEATURED_ON_HOME if t in by_title]
+
+    # Vitrine du hero : vedettes d'abord, puis les autres projets avec capture, puis les projets locaux
+    rest = [p for p in projects if p['title'] not in FEATURED_ON_HOME]
+    showcase = featured + [p for p in rest if p['image']] + [p for p in rest if not p['image']]
+    return render_template('home.html', featured_projects=featured, showcase_projects=showcase,
+                           total_projects=len(projects))
+
 
 @bp.route('/skills')
 def skills():
@@ -91,7 +112,8 @@ def experience():
             'color': 'blue'
         }
     ]
-    return render_template('experience.html', experiences=experiences)
+    return render_template('experience.html', experiences=experiences, total_projects=len(_load_projects()),
+                           years_active=datetime.now().year - 2019)
 
 @bp.route('/testimonials')
 def testimonials():
@@ -147,3 +169,52 @@ def testimonials():
         }
     ]
     return render_template('testimonials.html', testimonials=testimonials_data)
+
+IMAGE_EXTS = ('.jpg', '.jpeg', '.png', '.webp', '.gif', '.avif')
+
+
+def _load_events():
+    """Charge data/gallery.json. Les photos sont détectées automatiquement dans
+    static/images/gallery/<id>/ ; une liste 'photos' dans le JSON n'est plus nécessaire."""
+    path = os.path.join(current_app.config['DATA_DIR'], 'gallery.json')
+    with open(path, encoding='utf-8') as f:
+        events = json.load(f)
+
+    root = os.path.join(current_app.static_folder, 'images', 'gallery')
+    for event in events:
+        event['date_obj'] = datetime.strptime(event['date'], '%Y-%m-%d')
+        folder = os.path.join(root, event['id'])
+        names = sorted(n for n in os.listdir(folder) if n.lower().endswith(IMAGE_EXTS)) if os.path.isdir(folder) else []
+        event['photos'] = [f"{event['id']}/{n}" for n in names]
+        cover = event.get('cover')
+        event['cover_photo'] = f"{event['id']}/{cover}" if cover in names else (event['photos'][0] if names else None)
+    events.sort(key=lambda e: e['date_obj'], reverse=True)
+    return events
+
+
+@bp.route('/gallery')
+def gallery():
+    """Photothèque : liste des événements (une carte par événement)"""
+    events = _load_events()
+    return render_template(
+        'gallery.html',
+        events=events,
+        categories=sorted({e['category'] for e in events}),
+        years=sorted({e['date_obj'].year for e in events}, reverse=True),
+        total_photos=sum(len(e['photos']) for e in events),
+    )
+
+
+@bp.route('/gallery/<event_id>')
+def gallery_event(event_id):
+    """Détail d'un événement : toutes ses photos"""
+    events = _load_events()
+    pos = next((i for i, e in enumerate(events) if e['id'] == event_id), None)
+    if pos is None:
+        abort(404)
+    return render_template(
+        'gallery_event.html',
+        event=events[pos],
+        newer=events[pos - 1] if pos > 0 else None,
+        older=events[pos + 1] if pos < len(events) - 1 else None,
+    )

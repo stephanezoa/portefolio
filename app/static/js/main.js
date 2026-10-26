@@ -9,10 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialiser AOS si disponible
     if (typeof AOS !== 'undefined') {
         AOS.init({
-            duration: 1000,
+            duration: 650,
             once: true,
-            offset: 100,
-            easing: 'ease-in-out'
+            offset: 60,
+            easing: 'ease-out-cubic'
         });
     }
     
